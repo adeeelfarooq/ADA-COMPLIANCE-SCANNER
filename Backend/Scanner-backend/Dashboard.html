@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | ADA Compliance Scanner</title>
+   <!-- 1. Bootstrap Icons zaroor dalein (agar pehle se nahi hai) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <!-- 2. CSS File Link karein -->
+  <link rel="stylesheet" href="Modal.css">
+  
+  <!-- CSS Links -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --brand: #fd7e14;
+      --bg: #fff8f1;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #fd7e14, #fffaf2);
+      min-height: 100vh;
+    }
+
+    /* Navbar & Logo Styling from New Frontend */
+    .navbar {
+      background: linear-gradient(to right, #fd7e14, #fffaf2);
+    }
+
+    .logo-box { display: flex; align-items: center; }
+    .logo-img { margin-top: -20px; width: 110px; height: 60px; }
+    .logo-text { display: flex; align-items: center; justify-content: center; }
+    .logo-text span { font-weight: bolder; font-size: 10px; padding: 4px; color: white; }
+    .logo-ada { background-color: #1d4ed8; border-radius: 4px 0 0 4px; }
+    .logo-scanner { background-color: #f97316; border-radius: 0 4px 4px 0; }
+
+    /* Button Styles from New Frontend */
+    .btn-dashboard {
+      font-weight: bold; height: 40px; width: 110px; border-radius: 9999px;
+      color: #fefcfb; background-color: #fb923c; border: none;
+      border-right: 3px solid transparent; transition: all 0.5s ease;
+      display: flex; align-items: center; justify-content: center; text-decoration: none;
+    }
+    .btn-dashboard:hover {
+      color: #fb923c; background-color: #1d4ed8; border-right: 9px solid #fb923c;
+    }
+
+    .btn-primary { background-color: #1d4ed8; border: none; font-weight: 500; }
+    .btn-primary:hover { background-color: #fd7e14; color: white; transition: 0.5s ease; }
+
+    .btn-secondary { background-color: #fd7e14; border: none; }
+    .btn-secondary:hover { background-color: #1d4ed8; color: white; transition: 0.5s ease; }
+
+    /* Dashboard Specific UI */
+    .card {
+      border: none; border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      background: white;
+    }
+
+    .Accessibility {
+      color: #fd7e14; font-size: 60px; letter-spacing: -4px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .muted { color: #6c757d; }
+    .inline-wrap { display: none; margin-top: 30px; }
+    canvas { max-height: 250px; width: 100% !important; }
+
+    .container1 {
+      display: flex; flex-direction: column; gap: 40px; padding-top: 50px;
+    }
+
+    footer { margin-top: 100px; padding-bottom: 20px; }
+
+    #userInfo { display: none; } /* Kept as per your frontend request */
+
+    @media (max-width: 767px) {
+      .Accessibility { font-size: 35px; letter-spacing: -1px; }
+      .container1 { gap: 30px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-light shadow-sm" style="background-color: milk  ; position: relative; ">
+    <div class="container d-flex justify-content-between align-items-center">
+      <div class="box">
+
+        <img src="public/images/Logoada.png" alt="Logo" class="logo-img">
+
+        <!-- Text Box -->
+        <div class="logo-text">
+          <span class="logo-ada">ADA</span>
+          <span class="logo-scanner">SCANNER</span>
+        </div>
+      
+      </div>
+      <div class="d-flex gap-2 align-items-center">
+        <a href="index.html" class="btn btn-dashboard">Scan</a>
+        <span id="userInfo"></span>
+        <button id="btnLogout" class="btn btn-dashboard">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container container1">
+    <div class="text-center">
+      <h3 class="Accessibility fw-bold mb-3">Accessibility Scan Dashboard</h3>
+      <p class="muted">Welcome! View and explore your previous scans below.</p>
+    </div>
+
+    <!-- Actions -->
+    <div class="text-center">
+      <button id="btnShowScans" class="btn btn-primary btn-lg shadow">
+        <i class="bi bi-folder2-open me-2"></i> Show My Scans
+      </button>
+    </div>
+
+    <!-- Scan History Area -->
+    <div id="scanArea" style="display:none;">
+      <div class="card p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+          <h5 class="fw-bold m-0"><i class="bi bi-clock-history me-2"></i>Scan History</h5>
+          <div class="d-flex gap-2">
+            <button id="btnDeleteAll" class="btn btn-danger btn-sm px-3"><i class="bi bi-trash"></i> Delete All</button>
+            <button id="btnRefresh" class="btn btn-outline-secondary btn-sm px-3"><i class="bi bi-arrow-repeat"></i> Refresh</button>
+          </div>
+        </div>
+        
+        <p id="emptyNote" class="muted text-center py-4">Click "Show My Scans" to load your data.</p>
+        
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead class="table-light">
+              <tr class="small">
+                <th>Website URL</th>
+                <th>Date Scanned</th>
+                <th>Issues</th>
+                <th>Level</th>
+                <th class="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody id="scanTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Report View Area -->
+      <div id="inlineArea" class="inline-wrap card p-4">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+          <div>
+            <h4 id="inlineTitle" class="fw-bold text-primary m-0"></h4>
+            <div id="inlineMeta" class="small mt-1 text-muted"></div>
+          </div>
+          <button class="btn btn-close" onclick="document.getElementById('inlineArea').style.display='none'"></button>
+        </div>
+        <hr>
+        <div class="row g-4">
+          <div class="col-lg-7">
+            <h6 class="fw-bold mb-3">Issue Details:</h6>
+            <div id="inlineContent" class="p-3 bg-light rounded" style="white-space: pre-wrap; font-size: 0.9rem; max-height: 400px; overflow-y: auto;"></div>
+          </div>
+          <div class="col-lg-5 text-center">
+            <h6 class="fw-bold mb-3">Issue Distribution</h6>
+            <canvas id="scanChart"></canvas>
+            <p class="muted small mt-3">This chart visualizes the frequency of accessibility rule violations.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mode Modal -->
+  <div class="modal fade" id="modeSelectModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg">
+        <div class="modal-body p-5 text-center">
+          <h4 class="fw-bold mb-4">Select Viewing Mode</h4>
+          <p class="text-muted mb-4">How would you like to see your reports?</p>
+          <div class="d-grid gap-3">
+            <button id="btnBeginner" class="btn btn-primary btn-lg py-3">Beginner Mode (Simple)</button>
+            <button id="btnDeveloper" class="btn btn-secondary btn-lg py-3">Developer Mode (JSON)</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="py-4 text-center">
+    <small class="text-muted">&copy; 2025 ADA Compliance Scanner. All rights reserved.</small>
+  </footer>
+
+  <!-- Scripts -->
+   <script src="Modal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+    import { getFirestore, collection, getDocs, deleteDoc, doc, orderBy, query } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+
+    // Firebase Config from File 1
+    const firebaseConfig = {
+      apiKey: "AIzaSyDHexMOAju6p5balzlQUzuYjzIjT2muirI",
+      authDomain: "ada-scanner-db724.firebaseapp.com",
+      projectId: "ada-scanner-db724",
+      storageBucket: "ada-scanner-db724.appspot.com",
+      messagingSenderId: "459243186978",
+      appId: "1:459243186978:web:c1cf656d7377f80af9537b"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const userInfoEl = document.getElementById('userInfo');
+    const btnLogout = document.getElementById('btnLogout');
+    const btnShowScans = document.getElementById('btnShowScans');
+    const scanArea = document.getElementById('scanArea');
+    const scanTableBody = document.getElementById('scanTableBody');
+    const emptyNote = document.getElementById('emptyNote');
+    const btnDeleteAll = document.getElementById('btnDeleteAll');
+    const btnRefresh = document.getElementById('btnRefresh');
+    const inlineArea = document.getElementById('inlineArea');
+    const inlineTitle = document.getElementById('inlineTitle');
+    const inlineMeta = document.getElementById('inlineMeta');
+    const inlineContent = document.getElementById('inlineContent');
+
+    let scansList = [];
+    let detailChart = null;
+    let currentMode = "beginner";
+
+    // Auth Check
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        window.location.href = "login.html";
+        return;
+      }
+      userInfoEl.textContent = user.email;
+    });
+
+    // Firestore Load Scans
+    async function loadScans(uid) {
+      emptyNote.innerHTML = '<div class="spinner-border text-warning" role="status"></div><p class="mt-2">Fetching your reports...</p>';
+      scanTableBody.innerHTML = "";
+      inlineArea.style.display = "none";
+
+      try {
+        const scansRef = collection(db, "users", uid, "scans");
+        const q = query(scansRef, orderBy("date", "desc"));
+        const snap = await getDocs(q);
+
+        scansList = snap.docs.map(d => {
+          const data = d.data();
+          let dt = data.date;
+          if (dt && typeof dt.toDate === "function") dt = dt.toDate();
+          return { id: d.id, ...data, date: dt || new Date() };
+        });
+        renderTable(scansList);
+      } catch (err) {
+        emptyNote.textContent = "Error loading scans: " + err.message;
+      }
+    }
+
+    function renderTable(list) {
+      scanTableBody.innerHTML = "";
+      if (!list.length) {
+        emptyNote.style.display = "block";
+        emptyNote.textContent = "No scans found in your history.";
+        return;
+      }
+      emptyNote.style.display = "none";
+
+      list.forEach(scan => {
+        const tr = document.createElement('tr');
+        const issueCount = scan.issueCount ?? (scan.issues?.length || 0);
+        tr.innerHTML = `
+          <td class="small fw-bold text-truncate" style="max-width:200px;">${scan.url || "-"}</td>
+          <td class="small">${scan.date?.toLocaleString() || "-"}</td>
+          <td class="small"><span class="badge bg-warning text-dark">${issueCount} Issues</span></td>
+          <td class="small">${scan.complianceLevel || "Unknown"}</td>
+          <td class="text-center">
+            <button class="btn btn-primary btn-sm rounded-pill px-3 view-btn" data-id="${scan.id}">
+              <i class="bi bi-eye"></i> View
+            </button>
+          </td>`;
+        scanTableBody.appendChild(tr);
+      });
+    }
+
+    function openReport(scan) {
+      inlineTitle.textContent = scan.url;
+      const count = scan.issueCount ?? (scan.issues?.length || 0);
+      inlineMeta.textContent = `Date: ${scan.date?.toLocaleString()} | Issues: ${count} | Compliance: ${scan.complianceLevel || 'N/A'}`;
+
+      if (currentMode === "beginner") {
+        const list = (scan.issues || []).map(i => {
+          return `• [${i.impact || 'Serious'}] ${i.explanation || i.description || i.id}`;
+        }).join("\n\n");
+        inlineContent.textContent = list || "No major accessibility issues recorded.";
+      } else {
+        inlineContent.textContent = JSON.stringify(scan, null, 2);
+      }
+
+      // Chart Logic
+      const issueMap = {};
+      (scan.issues || []).forEach(i => {
+        const freq = i.elements ? i.elements.length : 1;
+        issueMap[i.id] = (issueMap[i.id] || 0) + freq;
+      });
+
+      const labels = Object.keys(issueMap);
+      const counts = Object.values(issueMap);
+
+      if (detailChart) detailChart.destroy();
+      detailChart = new Chart(document.getElementById("scanChart"), {
+        type: 'pie',
+        data: {
+          labels,
+          datasets: [{
+            data: counts,
+            backgroundColor: ['#1d4ed8', '#fd7e14', '#ffce56', '#4bc0c0', '#9966ff', '#ff6384']
+          }]
+        },
+        options: { plugins: { legend: { position: 'bottom' } } }
+      });
+
+      inlineArea.style.display = "block";
+      inlineArea.scrollIntoView({ behavior: "smooth" });
+      gsap.from("#inlineArea", { opacity: 0, y: 30, duration: 0.8 });
+    }
+
+    // Event Listeners
+    btnShowScans.addEventListener('click', () => {
+      const modal = new bootstrap.Modal(document.getElementById('modeSelectModal'));
+      modal.show();
+
+      document.getElementById('btnBeginner').onclick = async () => {
+        currentMode = "beginner";
+        modal.hide();
+        startLoadingProcess();
+      };
+
+      document.getElementById('btnDeveloper').onclick = async () => {
+        currentMode = "developer";
+        modal.hide();
+        startLoadingProcess();
+      };
+    });
+
+    async function startLoadingProcess() {
+      const user = auth.currentUser;
+      if (user) {
+        scanArea.style.display = "block";
+        await loadScans(user.uid);
+        gsap.from("#scanArea", { opacity: 0, y: 40, duration: 1 });
+      }
+    }
+
+    scanTableBody.addEventListener('click', (e) => {
+      const btn = e.target.closest('.view-btn');
+      if (!btn) return;
+      const id = btn.getAttribute('data-id');
+      const scan = scansList.find(s => s.id === id);
+      if (scan) openReport(scan);
+    });
+
+    btnDeleteAll.addEventListener('click', async () => {
+      if (!confirm("Are you sure you want to delete ALL scan history? This cannot be undone.")) return;
+      const user = auth.currentUser;
+      const snap = await getDocs(collection(db, "users", user.uid, "scans"));
+      for (const d of snap.docs) {
+        await deleteDoc(doc(db, "users", user.uid, "scans", d.id));
+      }
+      scansList = [];
+      renderTable(scansList);
+      inlineArea.style.display = "none";
+    });
+
+    btnRefresh.addEventListener('click', async () => {
+      const user = auth.currentUser;
+      if (user) await loadScans(user.uid);
+    });
+
+    btnLogout.addEventListener('click', async () => {
+      await signOut(auth);
+      window.location.href = "login.html";
+    });
+
+    // GSAP Entrance Animations
+    window.onload = () => {
+      gsap.from(".navbar", { y: -80, opacity: 0, duration: 1, ease: "power3.out" });
+      gsap.from(".Accessibility", { opacity: 0, y: 30, duration: 1, delay: 0.3 });
+      gsap.from(".muted", { opacity: 0, y: 20, duration: 1, delay: 0.5 });
+      gsap.from("#btnShowScans", { scale: 0.5, opacity: 0, duration: 0.8, delay: 0.8, ease: "back.out(1.7)" });
+      gsap.from("footer", { opacity: 0, y: 50, duration: 1, delay: 1.2 });
+    };
+
+  </script>
+</body>
+</html>

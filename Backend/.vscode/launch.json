@@ -1,0 +1,12 @@
+{
+
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Open visme.html",
+      "file": "c:\\Users\\MOON COMPUTERS\\Documents\\Front-End Folder\\Scanner-backend\\visme.html"
+    }
+  ]
+}

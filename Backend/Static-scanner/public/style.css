@@ -1,0 +1,123 @@
+/* ===== Global ===== */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ffffff, #fff1e6);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  color: #333;
+}
+
+/* ===== Main Scanner Card ===== */
+.scanner-card {
+  max-width: 800px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 20px 45px rgba(255, 140, 66, 0.25);
+}
+
+/* ===== Headings ===== */
+.title {
+  font-weight: 600;
+  color: #FF8C42;
+}
+
+.subtitle {
+  color: #666;
+}
+
+/* ===== Input Field ===== */
+.form-control {
+  border-radius: 10px;
+  border: 1.5px solid #ffd2b3;
+}
+
+.form-control:focus {
+  border-color: #FF8C42;
+  box-shadow: 0 0 0 0.2rem rgba(255, 140, 66, 0.25);
+}
+
+/* ===== Primary Button (Run Scan) ===== */
+.btn-primary {
+  background-color: #FF8C42;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  padding: 12px 30px;
+  min-width: 200px;
+  margin: 0 auto;
+  display: block; /* ensures center alignment */
+}
+
+.btn-primary:hover {
+  background-color: #E6762F;
+}
+
+/* ===== Download Button (same style as primary) ===== */
+#downloadBtn.btn-outline-primary {
+  background-color: #FF8C42;       /* solid orange */
+  color: #ffffff;                  /* white text for contrast */
+  border: none;                    /* remove border */
+  border-radius: 12px;
+  font-weight: 600;
+  padding: 12px 30px;              /* same small size */
+  min-width: 200px;                /* same width */
+  margin: 0 auto;                  /* center it */
+  display: block;
+}
+
+#downloadBtn.btn-outline-primary:hover {
+  background-color: #E6762F;       /* hover dark orange */
+  color: #ffffff;
+}
+
+/* ===== Progress Text ===== */
+#progress span {
+  color: #FF8C42;
+}
+
+/* ===== Score Box ===== */
+.score-box {
+  background: #fff6ef;
+  border-left: 6px solid #FF8C42;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+/* ===== URL Box ===== */
+.url-box {
+  word-break: break-all;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* ===== Issue Cards ===== */
+.issue-card {
+  border-left: 6px solid;
+  background: #ffffff;
+  padding: 12px 15px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  box-shadow: 0 6px 14px rgba(255, 140, 66, 0.15);
+}
+
+/* ===== Issue Text ===== */
+.issue-card small {
+  color: #666;
+}
+
+/* ===== Severity Chart ===== */
+canvas {
+  max-width: 260px;
+  margin: 0 auto;
+  display: block;
+}
+
+/* ===== Alerts ===== */
+.alert-success {
+  background: #fff1e6;
+  border-color: #FF8C42;
+  color: #9c4a12;
+}

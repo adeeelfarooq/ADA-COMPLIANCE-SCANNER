@@ -1,0 +1,287 @@
+
+
+@import url("https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&display=swap");
+@import "tailwindcss";
+
+@font-face {
+  font-family: "ProximaNova, sans-serif";
+  src: url("/fonts/ProximaNova-Regular.otf");
+}
+
+@theme {
+  --color-black: #222123;
+  --color-main-bg: #232224;
+  --color-white: #ffffff;
+  --color-dark-brown: #523122;
+  --color-mid-brown: #a26833;
+  --color-light-brown: #e3a458;
+  --color-red-brown: #7f3b2d;
+  --color-yellow-brown: #a26833;
+  --color-milk-yellow: #e3d3bc;
+  --color-red: #a02128;
+  --color-milk: #faeade;
+  --font-sans: "Antonio", sans-serif;
+  --font-paragraph: "ProximaNova, sans-serif";
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #faeade;
+  color: blue;
+  font-family: "Antonio", sans-serif;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+
+@layer utilities {
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+  .col-center {
+    @apply flex flex-col justify-center items-center;
+  }
+  .abs-center {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+  }
+  .general-title {
+    @apply 2xl:text-[8.5rem] md:text-8xl text-5xl font-bold uppercase leading-[9vw] tracking-[-.35vw];
+  }
+}
+
+@layer components {
+  .paragraph-line {
+    @apply text-nowrap overflow-hidden;
+  }
+
+  .hero-container {
+    @apply relative bg-[#e7ecf2] w-screen h-dvh overflow-hidden;
+
+    .hero-content {
+      @apply relative z-10 w-full h-full flex flex-col 2xl:justify-center items-center translate-y-10 2xl:pt-0 md:pt-0 pt-20 md:mb-5 ;
+
+      .hero-title {
+        @apply text-blue-600 2xl:text-[8.5rem] md:text-[5.3rem] text-[3.3rem] font-bold uppercase leading-[1vw] tracking-[-.35vw] 2xl:mb-0 md:mb-5 md:mt-7 md:pb-0 mb-4 mt-4 ;
+      }
+
+      .hero-text-scroll {
+        @apply  mb-2 border-[.5vw] border-milk ;
+
+        .hero-subtitle {
+          @apply bg-orange-400;
+        }
+
+        h1 {
+          @apply uppercase 2xl:text-[8.5rem] md:text-[3.5rem] text-[2.0rem] font-bold text-[#fce1cd] leading-[4vw] tracking-[-.35vw] 2xl:px-[1.2vw] px-3 2xl:pb-[1vw] pb-5 2xl:py-0 py-3;
+        }
+      }
+
+      .hhh {
+        @apply font-paragraph text-dark-brown text-center md:max-w-lg max-w-sm px-0 md:text-sm text-xs leading-[115%] md:mt-75 mt-60 ;
+      }
+
+      .hero-button {
+        @apply  h-14 w-30 pt-3 pl-7 mt-4 text-milk bg-orange-400 uppercase font-bold text-lg rounded-full transition-all duration-1000 hover:text-orange-400 hover:border-r-9 hover:bg-blue-700 hover:cursor-pointer   ;
+      }
+    }
+  }
+
+  .message-content {
+    @apply bg-orange-400 text-milk min-h-dvh overflow-hidden flex justify-center items-center relative z-20;
+
+    .msg-wrapper {
+      @apply 2xl:text-[8.5rem] md:text-8xl text-5xl font-bold uppercase leading-[9vw] tracking-[-.35vw] flex flex-col justify-center items-center md:gap-24 gap-14;
+
+      h1:first-of-type {
+        @apply 2xl:max-w-4xl md:max-w-2xl max-w-xs text-center  text-[#faeade10];
+      }
+
+      h1:last-of-type {
+        @apply 2xl:max-w-7xl md:max-w-4xl max-w-xs text-center  text-[#faeade10];
+      }
+    }
+
+    p {
+      @apply text-center font-paragraph;
+    }
+
+    h1,
+    h2 {
+      @apply leading-none;
+    }
+
+    .msg-text-scroll {
+      @apply rotate-[3deg] 2xl:translate-y-5 md:-translate-y-5 absolute z-10 border-[.5vw] border-[#7f3b2d];
+    }
+  }
+
+  .flavor-section {
+    @apply min-h-dvh bg-milk;
+
+    .flavor-text-scroll {
+      @apply rotate-[-3deg] md:translate-y-5 border-[.5vw] border-milk absolute z-10;
+    }
+
+    .first-text-split h1 {
+      @apply md:text-center text-blue-800 md:ml-10;
+    }
+
+    .second-text-split h1 {
+      @apply md:text-center md:translate-y-10 md:-translate-x-1 h-full  ;
+    }
+
+    .slider-wrapper {
+      @apply lg:h-dvh min-h-dvh md:min-h-fit w-full mt-0 md:mt-20 xl:mt-0;
+
+      .flavors {
+        @apply h-full w-full flex md:flex-row flex-col items-center 2xl:gap-72 lg:gap-52 md:gap-24 gap-7 flex-nowrap;
+
+        .drinks {
+          @apply absolute left-1/2 -translate-x-1/2 bottom-0 md:h-full h-80;
+        }
+
+        .elements {
+          @apply absolute md:top-0 md:bottom-auto bottom-10 w-full;
+        }
+
+        h1 {
+          @apply absolute md:bottom-0 md:left-10 bottom-5 left-5 text-gray-400  md:text-4xl text-3xl font-semibold uppercase tracking-tighter;
+        }
+      }
+    }
+  }
+
+  .nutrition-section {
+    @apply min-h-dvh 2xl:h-[120dvh] overflow-hidden relative;
+
+    .big-img {
+      @apply w-[100%] absolute 2xl:h-full md:h-[100%] h-dvh left-0 bottom-0 object-top 2xl:object-contain object-cover md:scale-110 scale-110 md:translate-y-7 translate-y-5 md:translate-x-17 ;
+    }
+
+    .nutrition-title {
+      @apply rotate-[-12deg] 2xl:max-w-4xl xl:max-w-2xl  md:py-0 py-3 md:pb-200 pb-0 lg:pb-0 md:text-center md:-mt-10 -mt-9 -translate-x-5   text-blue-600;
+    }
+
+    .nutrition-text-scroll {
+      @apply md:rotate-[-15deg] rotate-[-12deg] border-[.5vw] border-[#e3d3bc] text-nowrap opacity-0 md:-mt-32 -mt-26 -translate-x-2 ;
+    }
+
+    .nutrition-box {
+      @apply absolute md:bottom-16 bottom-5 w-full md:px-0 px-5 ;
+
+      .list-wrapper {
+        @apply bg-orange-400 rounded-full border-[.5vw] border-[#e8ddca] md:mx-70 mx-5  max-w-7xl md:py-7 py-5 md:px-0 px-5 flex justify-between items-center;
+
+        p {
+          @apply text-milk-yellow;
+        }
+      }
+
+      .spacer-border {
+        @apply absolute right-0 top-1/2 transform -translate-y-1/2 md:h-24 h-16 w-px bg-gray-300;
+      }
+    }
+  }
+
+  .benefit-section {
+    @apply min-h-dvh bg-gray-950 overflow-hidden relative;
+
+    p {
+      @apply text-milk font-paragraph text-center text-lg;
+    }
+
+    .first-title {
+      @apply rotate-[3deg] relative z-10;
+    }
+
+    .second-title {
+      @apply rotate-[-1deg] md:-translate-y-5;
+    }
+
+    .third-title {
+      @apply rotate-[1deg] md:-translate-y-12 relative z-10;
+    }
+
+    .fourth-title {
+      @apply rotate-[-5deg] md:-translate-y-12;
+    }
+
+    .vd-pin-section {
+      @apply md:h-[110vh] h-dvh overflow-hidden md:!-translate-y-[15%] md:mt-0 mt-20;
+
+      video {
+        @apply size-full absolute inset-0 object-cover ;
+      }
+
+      .play-btn {
+        @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[7vw] flex justify-center items-center bg-[#ffffff1a] backdrop-blur-xl rounded-full;
+      }
+
+      img:first-of-type {
+        @apply size-[15vw];
+      }
+    }
+  }
+
+  .testimonials-section {
+    @apply bg-gradient-to-r from-orange-400 to-white relative w-full h-[120dvh];
+
+    .pin-box {
+      @apply flex items-center justify-center w-full ps-52 absolute 2xl:bottom-32 md:bottom-[50vh] bottom-[8vh];
+
+      .vd-card {
+        @apply md:w-200 w-80 flex-none md:rounded-[2vw] rounded-3xl -ms-44 overflow-hidden 2xl:relative absolute border-[.5vw] border-milk;
+      }
+    }
+
+    h1 {
+      @apply uppercase md:text-[15.5vw] text-[19.5vw] leading-[100%] tracking-[-.4vw] ml-[2vw] font-bold;
+    }
+  }
+
+  .footer-section {
+    @apply 2xl:min-h-dvh min-h-dvh overflow-hidden relative bg-orange-400;
+
+    .social-btn {
+      @apply border border-[#faeade33] md:size-[5vw] size-14 md:p-0 p-3 flex justify-center items-center rounded-full hover:bg-[#ffffff1a] transition-colors cursor-pointer;
+    }
+
+    input {
+      @apply 2xl:text-4xl text-3xl placeholder:font-bold placeholder:tracking-tighter;
+    }
+
+    .copyright-box {
+      @apply 2xl:absolute w-full md:px-10 px-5 md:py-7 -mt-10 py-0 bottom-0 text-milk opacity-50 md:text-lg font-paragraph flex gap-7 md:flex-row flex-col-reverse md:justify-between justify-center items-center;
+
+      p {
+        @apply text-center;
+      }
+    }
+  }
+}
+
+.nutrition-section {
+  background-color: #faeade00;
+  background-image: radial-gradient(circle, #f3ece2, #dcccb0);
+}
+
+.spin-circle {
+  animation: spin 20s linear infinite;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

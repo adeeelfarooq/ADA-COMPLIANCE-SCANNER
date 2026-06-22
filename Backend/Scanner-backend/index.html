@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ADA Compliance Scanner</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <!-- 2. CSS File Link karein -->
+  <link rel="stylesheet" href="Modal.css">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #fd7e14, #fffaf2);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Logo Styling */
+    .logo-box {
+      display: flex;
+      align-items: center;
+
+
+
+
+    }
+
+
+    .logo-img {
+      margin-top: -20px;
+
+      width: 110px;
+      height: 60px;
+    }
+
+    .logo-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+    }
+
+    .logo-text span {
+
+      font-weight: bolder;
+      font-size: 10px;
+      padding: 4px;
+      color: white;
+
+    }
+
+    .logo-ada {
+      background-color: #1d4ed8;
+      
+      border-radius: 4px 0 0 4px;
+    }
+
+    .logo-scanner {
+      background-color: #f97316;
+      
+      border-radius: 0 4px 4px 0;
+    }
+
+
+    .hero {
+      background: #ffffff;
+      padding: 80px 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+      margin-top: 50px;
+    }
+
+    .form-control:focus { border-color: #fd7e14; box-shadow: none; }
+
+    /* Buttons from File 2 */
+    .btn-scan {
+      font-weight: bold; height: 50px; padding: 10px 30px; border-radius: 9999px;
+      color: #fff; background-color: #fd7e14; border: none; border-right: 3px solid transparent;
+      transition: all 0.5s ease; position: relative; z-index: 10;
+    }
+    .btn-scan:hover { color: #fd7e14; background-color: #1d4ed8; border-right: 9px solid #fd7e14; }
+
+    .btn-dashboard {
+      font-weight: bold; height: 40px; width: 180px; border-radius: 9999px;
+      color: #fefcfb; background-color: #fb923c; border: none; border-right: 3px solid transparent;
+      transition: all 0.5s ease;
+    }
+    .btn-dashboard:hover { color: #fb923c; background-color: #1d4ed8; border-right: 9px solid #fb923c; }
+
+    /* Plan Cards Styling from File 1 */
+    .plan-card {
+      border: 2px solid #eee; border-radius: 12px; padding: 25px;
+      text-align: center; transition: 0.3s; cursor: pointer; margin-bottom: 15px;
+    }
+    .plan-card:hover { border-color: #fd7e14; transform: scale(1.03); }
+    .plan-card.selected { border-color: #fd7e14; background: #fff3e6; }
+    .plan-title { color: #fd7e14; font-weight: 600; font-size: 20px; }
+
+    #creditsBadge { border-radius: 30px; letter-spacing: 0.5px; }
+
+    #results {
+      margin-top: 40px; text-align: left; background: #fff;
+      border-radius: 12px; padding: 30px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Video Animation Styling */
+    .scan-container { position: relative; display: inline-block; }
+    .scan-video {
+      opacity: 0; pointer-events: none; object-fit: cover; border-radius: 0.5rem;
+      z-index: 1; width: 60%; right: 0; margin-left: auto; transform: translateY(-30px);
+    }
+
+    footer { margin-top: 40px; padding-bottom: 20px; }
+    .Scanningprogress { font-weight: bold; color: #fd7e14; }
+
+    @media (max-width: 767px) {
+      .hero { transform: scale(0.95); margin-top: 20px; }
+      .scan-video { width: 50%; transform: translateY(-5px); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+ <nav class="navbar navbar-light shadow-sm" style="background-color: milk  ; position: relative; ">
+    <div class="container d-flex justify-content-between align-items-center">
+      <div class="box">
+
+        <img src="public/images/Logoada.png" alt="Logo" class="logo-img">
+
+        <!-- Text Box -->
+        <div class="logo-text">
+          <span class="logo-ada">ADA</span>
+          <span class="logo-scanner">SCANNER</span>
+        </div>
+      </div>
+
+      <button class="btn btn-dashboard" onclick="window.location.href='dashboard.html'">
+        Go to Dashboard
+      </button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="hero text-center">
+      <h1 class="mb-4 fw-bold" style="color: #fd7e14;">Scan Your Website for ADA & WCAG Compliance</h1>
+      <p class="lead mb-5">Enter a URL to check accessibility issues in real-time and get a visual report.</p>
+
+      <form id="scanForm" class="row justify-content-center align-items-center">
+        <div class="col-md-6 mb-3 mb-md-0">
+          <input type="url" id="urlInput" class="form-control form-control-lg" placeholder="https://example.com" required>
+        </div>
+        
+        <div class="col-auto d-flex align-items-center">
+          <div class="scan-container">
+            <button type="submit" class="btn btn-scan btn-lg">
+              Start Scan 
+            </button>
+            
+          </div>
+
+          <span id="creditsBadge" class="ms-3 badge bg-warning text-dark fs-6 p-2 shadow-sm">
+            Credits: <span id="creditsCount">0</span>
+          </span>
+        </div>
+      </form>
+
+      <div id="results"></div>
+    </div>
+  </div>
+
+  <!-- Upgrade Modal from File 1 -->
+  <div class="modal fade" id="upgradeModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold">Upgrade Your Plan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="plan-card" id="plusCard">
+                <h4 class="plan-title">PLUS</h4>
+                <p>Unlock Static-Scanning</p>
+                <p class="text-muted small">Quick analysis of page structure and semantic errors.</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="plan-card" id="proCard">
+                <h4 class="plan-title">PRO</h4>
+                <p>Unlimited Dynamic Scans</p>
+                <p class="text-muted small">Powered by Puppeteer and axe-core for deep validation.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn btn-warning text-white fw-bold" id="upgradeOk">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="py-4 text-center">
+    <small>&copy; 2025 ADA Compliance Scanner. All rights reserved.</small>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script type="module">
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+
+    // Firebase Config (Using your active DB724 config)
+    const firebaseConfig = {
+      apiKey: "AIzaSyDHexMOAju6p5balzlQUzuYjzIjT2muirI",
+      authDomain: "ada-scanner-db724.firebaseapp.com",
+      projectId: "ada-scanner-db724",
+      storageBucket: "ada-scanner-db724.firebasestorage.app",
+      messagingSenderId: "459243186978",
+      appId: "1:459243186978:web:c1cf656d7377f80af9537b"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Friendly Issue Mapping from File 2
+    const issueDescriptions = {
+      'color-contrast': { title: "Low Color Contrast", explanation: "Text doesn’t stand out enough from its background.", fix: "Increase contrast between foreground and background colors." },
+      'label': { title: "Missing Form Labels", explanation: "Form controls lack labels for screen readers.", fix: "Add explicit <label> tags tied to inputs." },
+      'image-alt': { title: "Missing Alt Text", explanation: "Images aren’t described to non-visual users.", fix: "Provide meaningful alt attributes on <img> elements." }
+      // ... more can be added
+    };
+
+    // Credit Animation Logic
+    function animateCredits(oldVal, newVal) {
+      let display = document.getElementById("creditsCount");
+      let current = oldVal;
+      let interval = setInterval(() => {
+        if (current <= newVal) { display.innerText = newVal; clearInterval(interval); return; }
+        current--;
+        display.innerText = current;
+      }, 100);
+    }
+
+    async function loadCredits() {
+      const user = auth.currentUser;
+      if (!user) return;
+      const token = await user.getIdToken();
+      const res = await fetch("http://localhost:3000/credits", {
+        headers: { "Authorization": "Bearer " + token }
+      });
+      const data = await res.json();
+      if (data.remaining === "Unlimited") {
+        document.getElementById("creditsCount").innerText = "Unlimited";
+      } else {
+        let currentDisplayed = parseInt(document.getElementById("creditsCount").innerText) || 0;
+        animateCredits(currentDisplayed, data.remaining);
+      }
+    }
+
+    onAuthStateChanged(auth, user => {
+      if (!user) {
+        window.location.href = "login.html";
+      } else {
+        loadCredits();
+      }
+    });
+
+    let latestResults = null;
+    let selectedPlan = "pro";
+    document.getElementById("proCard").classList.add("selected");
+
+    // Scan Form Logic
+    document.getElementById('scanForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const url = document.getElementById('urlInput').value.trim();
+      const outputDiv = document.getElementById('results');
+      
+      try {
+        outputDiv.innerHTML = "<div class='Scanningprogress text-center'>Scanning in progress... Please wait.</div>";
+        const user = auth.currentUser;
+        let idToken = user ? await user.getIdToken() : null;
+
+        const res = await fetch('http://localhost:3000/scan', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url, idToken })
+        });
+
+        const data = await res.json();
+
+        if (data.error === "FREE_LIMIT_REACHED") {
+          const modal = new bootstrap.Modal(document.getElementById('upgradeModal'));
+          modal.show();
+          outputDiv.innerHTML = "";
+          return;
+        }
+
+        if (!data.success) throw new Error(data.message || "Scan failed");
+
+        latestResults = data;
+        if (!data.issues || data.issues.length === 0) {
+          outputDiv.innerHTML = "<div class='alert alert-success'>No accessibility issues found!</div>";
+          return;
+        }
+
+        let html = `<h4 class="mb-4 text-success">${data.issues.length} Accessibility Issues Found:</h4>`;
+        
+        data.issues.forEach((issue, idx) => {
+          const friendly = issueDescriptions[issue.id] || {
+            title: issue.id,
+            explanation: issue.description || issue.explanation,
+            fix: issue.elements?.[0]?.summary || "Check documentation"
+          };
+
+          html += `
+            <div class="card mb-3 shadow-sm scan-card border-start border-5 border-warning">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                  <h5 class="fw-bold">Issue ${idx + 1}: ${friendly.title}</h5>
+                  <span class="badge bg-dark">Level: ${issue.level || 'N/A'}</span>
+                </div>
+                <p><strong>Explanation:</strong> ${friendly.explanation}</p>
+                <p><strong>Fix Suggestion:</strong> ${friendly.fix}</p>
+                <p><strong>Impact:</strong> <span class="badge bg-danger">${issue.impact}</span></p>
+                <a href="${issue.helpUrl}" target="_blank" class="btn btn-sm btn-outline-primary">Learn More</a>
+              </div>
+            </div>`;
+        });
+
+        html += `
+          <div class="text-center mt-4">
+            <button class="btn btn-outline-success btn-sm me-2" onclick="downloadJSON()">Download JSON</button>
+            <button class="btn btn-outline-primary btn-sm me-2" onclick="window.print()">Print Report</button>
+          </div>`;
+
+        outputDiv.innerHTML = html;
+        loadCredits();
+
+        gsap.from(".scan-card", {
+          duration: 0.6, opacity: 0, y: 20, stagger: 0.1, ease: "power2.out"
+        });
+
+      } catch (err) {
+        outputDiv.innerHTML = `<div class='alert alert-danger'>Error: ${err.message}</div>`;
+      }
+    });
+
+    // Plan Selection Logic
+    document.getElementById("proCard").addEventListener("click", () => {
+      selectedPlan = "pro";
+      document.getElementById("proCard").classList.add("selected");
+      document.getElementById("plusCard").classList.remove("selected");
+    });
+
+    document.getElementById("plusCard").addEventListener("click", () => {
+      selectedPlan = "plus";
+      document.getElementById("plusCard").classList.add("selected");
+      document.getElementById("proCard").classList.remove("selected");
+    });
+
+    document.getElementById("upgradeOk").addEventListener("click", async () => {
+      try {
+        const user = auth.currentUser;
+        if (!user) return alert("Please login first");
+        const idToken = await user.getIdToken();
+
+        if (selectedPlan === "pro") {
+          const res = await fetch("http://localhost:3000/create-checkout-session", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ idToken })
+          });
+          const data = await res.json();
+          if (data.url) window.location.href = data.url;
+          else alert("Payment session failed");
+        } else {
+          window.location.href = "http://localhost:3002"; // Redirect for Plus
+        }
+      } catch (err) { alert("Error: " + err.message); }
+    });
+
+    // Video Hover Logic from File 2
+    const btnScan = document.querySelector(".btn-scan");
+    const video = document.querySelector(".scan-video");
+    video.pause();
+
+    btnScan.addEventListener("mouseenter", () => {
+      video.currentTime = 0;
+      video.play();
+      gsap.fromTo(video, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1.6, xPercent: 70, duration: 0.5 });
+    });
+
+    btnScan.addEventListener("mouseleave", () => {
+      gsap.to(video, { opacity: 0, scale: 0.8, duration: 0.4, onComplete: () => video.pause() });
+    });
+
+    // Entrance Animations
+    gsap.from(".navbar", { duration: 1, y: -100, ease: "power2.out" });
+    gsap.from(".hero h1", { duration: 1, opacity: 0, scale: 0.9, delay: 0.3 });
+    gsap.from("#scanForm", { duration: 1, opacity: 0, y: 30, delay: 0.5 });
+
+  </script>
+
+  <script>
+    // Global helper for downloads
+    function downloadJSON() {
+      if (!latestResults) return;
+      const blob = new Blob([JSON.stringify(latestResults, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'ada-report.json';
+      a.click();
+    }
+  </script>
+  <script src="Modal.js"></script>
+</body>
+</html>

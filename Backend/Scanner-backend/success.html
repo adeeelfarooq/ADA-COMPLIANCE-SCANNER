@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Success | ADA Compliance Scanner</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <!-- 2. CSS File Link karein -->
+  <link rel="stylesheet" href="Modal.css">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <style>
+    :root {
+      --brand: #fd7e14;
+      --blue: #1d4ed8;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #fd7e14, #fffaf2);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* ===== Navbar ===== */
+    .navbar {
+      background: linear-gradient(to right, #fd7e14, #fffaf2);
+    }
+
+    .logo-box {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-img {
+      margin-top: -20px;
+      width: 110px;
+      height: 60px;
+    }
+
+    .logo-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-text span {
+      font-weight: bolder;
+      font-size: 10px;
+      padding: 4px;
+      color: white;
+    }
+
+    .logo-ada {
+      background-color: var(--blue);
+      border-radius: 4px 0 0 4px;
+    }
+
+    .logo-scanner {
+      background-color: #f97316;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .btn-dashboard {
+      font-weight: bold;
+      height: 40px;
+      width: 110px;
+      border-radius: 9999px;
+      color: #fefcfb;
+      background-color: #fb923c;
+      border: none;
+      border-right: 3px solid transparent;
+      transition: all 0.5s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    .btn-dashboard:hover {
+      color: #fb923c;
+      background-color: var(--blue);
+      border-right: 9px solid #fb923c;
+    }
+    .btn-dashboard2 {
+      font-weight: bold;
+      height: 40px;
+      width: 180px;
+      border-radius: 9999px;
+      color: #fefcfb;
+      background-color: #fb923c;
+      border: none;
+      border-right: 3px solid transparent;
+      transition: all 0.5s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    .btn-dashboard2:hover {
+      color: #fb923c;
+      background-color: var(--blue);
+      border-right: 9px solid #fb923c;
+    }
+
+    /* ===== Success Card ===== */
+    .success-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .success-card {
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      padding-top: 40px;
+      max-width: 550px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transform: scale(0.7);
+      margin-top: -90px;
+    }
+
+    .success-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(to right, var(--blue), var(--brand));
+    }
+
+    /* ===== Animated Checkmark ===== */
+    .checkmark-circle {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand), var(--blue));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 30px;
+      box-shadow: 0 10px 30px rgba(253, 126, 20, 0.4);
+    }
+
+    .checkmark-circle i {
+      font-size: 50px;
+      color: white;
+    }
+
+    /* ===== Confetti Particles ===== */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      opacity: 0;
+    }
+
+    /* ===== Text ===== */
+    .success-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 10px;
+    }
+
+    .success-subtitle {
+      font-size: 18px;
+      color: var(--blue);
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .success-desc {
+      color: #6c757d;
+      font-size: 14px;
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+
+    /* ===== Status Area ===== */
+    #statusMessage {
+      min-height: 60px;
+      margin-bottom: 20px;
+    }
+
+    .status-activating {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 12px;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .status-activating .spinner-border {
+      width: 22px;
+      height: 22px;
+      color: var(--brand);
+    }
+
+    .status-success {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 12px;
+      padding: 15px 20px;
+    }
+
+    .status-success i {
+      color: var(--brand);
+      font-size: 20px;
+    }
+
+    .status-fail {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 12px;
+      padding: 15px 20px;
+    }
+
+    .status-fail i {
+      color: var(--blue);
+      font-size: 20px;
+    }
+
+    /* ===== Buttons ===== */
+    .btn-home {
+      font-weight: bold;
+      height: 50px;
+      padding: 10px 35px;
+      border-radius: 9999px;
+      color: #fff;
+      background-color: var(--brand);
+      border: none;
+      border-right: 3px solid transparent;
+      transition: all 0.5s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 16px;
+    }
+
+    .btn-home:hover {
+      color: var(--brand);
+      background-color: var(--blue);
+      border-right: 9px solid var(--brand);
+    }
+
+    .btn-dashboard-bottom {
+      font-weight: bold;
+      height: 50px;
+      
+      padding: 10px 35px;
+      border-radius: 9999px;
+      color: #fff;
+      background-color: var(--blue);
+      border: none;
+      border-right: 3px solid transparent;
+      transition: all 0.5s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 16px;
+    }
+
+    .btn-dashboard-bottom:hover {
+      color: var(--blue);
+      background-color: var(--brand);
+      border-right: 9px solid var(--blue);
+    }
+
+    /* ===== Feature List ===== */
+    .features-list {
+      text-align: left;
+      margin: 25px auto;
+      max-width: 320px;
+    }
+
+    .features-list .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      font-size: 14px;
+      color: #444;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .features-list .feature-item:last-child {
+      border-bottom: none;
+    }
+
+    .features-list .feature-item i {
+      color: var(--brand);
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    /* ===== Pro Badge ===== */
+    .pro-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--brand), var(--blue));
+      color: white;
+      padding: 5px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(253, 126, 20, 0.4);
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    @media (max-width: 576px) {
+      .success-card {
+        padding: 40px 25px;
+        margin: 0 10px;
+      }
+
+      .success-title {
+        font-size: 26px;
+      }
+
+      .btn-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-light shadow-sm" style="background-color: milk  ; position: relative; ">
+    <div class="container d-flex justify-content-between align-items-center">
+      <div class="box">
+
+        <img src="public/images/Logoada.png" alt="Logo" class="logo-img">
+
+        <!-- Text Box -->
+        <div class="logo-text">
+          <span class="logo-ada">ADA</span>
+          <span class="logo-scanner">SCANNER</span>
+        </div>
+      
+      </div>
+      <div class="d-flex gap-2 align-items-center">
+        <a href="http://localhost:3000/index.html" class="btn btn-dashboard">
+           Scan
+        </a>
+        <a href="dashboard.html" class="btn btn-dashboard2">
+           Go to Dashboard
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Success Content -->
+  <div class="success-wrapper">
+    <div class="success-card" id="successCard">
+
+      <!-- Confetti Particles — only orange & blue -->
+      <div class="confetti" id="c1" style="background:#fd7e14; top:20px; left:30px;"></div>
+      <div class="confetti" id="c2" style="background:#1d4ed8; top:40px; right:50px;"></div>
+      <div class="confetti" id="c3" style="background:#fd7e14; top:80px; left:80px;"></div>
+      <div class="confetti" id="c4" style="background:#1d4ed8; bottom:60px; right:30px;"></div>
+      <div class="confetti" id="c5" style="background:#fd7e14; bottom:40px; left:50px;"></div>
+      <div class="confetti" id="c6" style="background:#1d4ed8; top:30px; right:100px;"></div>
+      <div class="confetti" id="c7" style="background:#fd7e14; bottom:80px; left:120px;"></div>
+      <div class="confetti" id="c8" style="background:#1d4ed8; top:60px; left:160px;"></div>
+
+      <!-- Animated Checkmark -->
+      <div class="checkmark-circle" id="checkCircle">
+        <i class="bi bi-check-lg"></i>
+      </div>
+
+      <!-- Pro Badge -->
+      <div class="pro-badge" id="proBadge">PRO PLAN</div>
+
+      <!-- Title -->
+      <h2 class="success-title" id="successTitle">Payment Successful!</h2>
+      <p class="success-subtitle" id="successSub">Welcome to ADA Scanner Pro</p>
+      <p class="success-desc" id="successDesc">
+        Your payment has been received. We're now activating your Pro plan with unlimited accessibility scans.
+      </p>
+
+      <!-- Status Message -->
+      <div id="statusMessage">
+        <div class="status-activating" id="activatingStatus">
+          <div class="spinner-border" role="status"></div>
+          <span class="fw-bold" style="color:var(--brand);">Activating your Pro plan...</span>
+        </div>
+      </div>
+
+      <!-- Features List -->
+      <div class="features-list" id="featuresList">
+        <div class="feature-item">
+          <i class="bi bi-infinity"></i>
+          <span>Unlimited Dynamic Accessibility Scans</span>
+        </div>
+        <div class="feature-item">
+          <i class="bi bi-lightning-charge-fill"></i>
+          <span>Puppeteer + axe-core Deep Rendering</span>
+        </div>
+        <div class="feature-item">
+          <i class="bi bi-bar-chart-fill"></i>
+          <span>Full Dashboard & History Access</span>
+        </div>
+        <div class="feature-item">
+          <i class="bi bi-download"></i>
+          <span>JSON, TXT & PDF Report Downloads</span>
+        </div>
+        <div class="feature-item">
+          <i class="bi bi-shield-check"></i>
+          <span>Priority Support & Updates</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="d-flex justify-content-center gap-3 flex-wrap mt-4 btn-actions" id="btnActions">
+        <a href="index.html" class="btn-home" id="btnHome">
+          <i class="bi bi-rocket-takeoff"></i> Start Scanning
+        </a>
+        <a href="dashboard.html" class="btn-dashboard-bottom" id="btnDash">
+          <i class="bi bi-grid-1x2"></i> View Dashboard
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <small class="text-muted">&copy; 2025 ADA Compliance Scanner. All rights reserved.</small>
+  </footer>
+  <script src="Modal.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Firebase + Activation Logic -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDHexMOAju6p5balzlQUzuYjzIjT2muirI",
+      authDomain: "ada-scanner-db724.firebaseapp.com",
+      projectId: "ada-scanner-db724",
+      storageBucket: "ada-scanner-db724.firebasestorage.app",
+      messagingSenderId: "459243186978",
+      appId: "1:459243186978:web:c1cf656d7377f80af9537b"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    async function activatePro() {
+      const statusEl = document.getElementById("statusMessage");
+
+      const user = auth.currentUser;
+
+      if (!user) {
+        statusEl.innerHTML = `
+          <div class="status-fail">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            <span class="fw-bold" style="color:var(--blue);">Session expired. Please <a href="login.html" style="color:var(--brand);">login again</a> to activate.</span>
+          </div>`;
+        return;
+      }
+
+      try {
+        const idToken = await user.getIdToken();
+
+        const res = await fetch("http://localhost:3000/buy-pro", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ idToken })
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          statusEl.innerHTML = `
+            <div class="status-success">
+              <i class="bi bi-patch-check-fill me-2"></i>
+              <span class="fw-bold" style="color:var(--blue);">Pro Plan Activated! Enjoy unlimited scanning.</span>
+            </div>`;
+
+          gsap.to("#checkCircle", {
+            scale: 1.2,
+            duration: 0.3,
+            yoyo: true,
+            repeat: 2,
+            ease: "power2.inOut"
+          });
+
+          triggerConfetti();
+
+        } else {
+          statusEl.innerHTML = `
+            <div class="status-fail">
+              <i class="bi bi-x-circle-fill me-2"></i>
+              <span class="fw-bold" style="color:var(--blue);">Activation failed. Please contact support or try again.</span>
+            </div>`;
+        }
+
+      } catch (err) {
+        statusEl.innerHTML = `
+          <div class="status-fail">
+            <i class="bi bi-x-circle-fill me-2"></i>
+            <span class="fw-bold" style="color:var(--blue);">Network error: ${err.message}</span>
+          </div>`;
+      }
+    }
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setTimeout(activatePro, 1500);
+      } else {
+        document.getElementById("statusMessage").innerHTML = `
+          <div class="status-fail">
+            <i class="bi bi-person-x-fill me-2"></i>
+            <span class="fw-bold" style="color:var(--blue);">Not logged in. <a href="login.html" style="color:var(--brand);">Login here</a></span>
+          </div>`;
+      }
+    });
+
+    function triggerConfetti() {
+      for (let i = 1; i <= 8; i++) {
+        const el = document.getElementById("c" + i);
+        if (!el) continue;
+        gsap.set(el, { opacity: 1, scale: 0 });
+        gsap.to(el, {
+          x: gsap.utils.random(-150, 150),
+          y: gsap.utils.random(-200, -50),
+          scale: gsap.utils.random(1, 2.5),
+          rotation: gsap.utils.random(0, 720),
+          opacity: 0,
+          duration: gsap.utils.random(1.2, 2.5),
+          delay: gsap.utils.random(0, 0.5),
+          ease: "power2.out"
+        });
+      }
+    }
+  </script>
+
+  <!-- GSAP Entrance Animations -->
+  <script>
+    window.addEventListener("load", () => {
+
+      gsap.from(".navbar", {
+        y: -100,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+      });
+
+      gsap.from("#successCard", {
+        scale: 0.7,
+        opacity: 0,
+        duration: 1,
+        delay: 0.3,
+        ease: "back.out(1.7)"
+      });
+
+      gsap.from("#checkCircle", {
+        scale: 0,
+        rotation: -180,
+        duration: 1,
+        delay: 0.6,
+        ease: "elastic.out(1, 0.5)"
+      });
+
+      gsap.from("#proBadge", {
+        scale: 0,
+        opacity: 0,
+        duration: 0.6,
+        delay: 0.9,
+        ease: "back.out(2)"
+      });
+
+      gsap.from("#successTitle", {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        delay: 1.0,
+        ease: "power2.out"
+      });
+
+      gsap.from("#successSub", {
+        y: 20,
+        opacity: 0,
+        duration: 0.7,
+        delay: 1.2,
+        ease: "power2.out"
+      });
+
+      gsap.from("#successDesc", {
+        y: 20,
+        opacity: 0,
+        duration: 0.7,
+        delay: 1.4,
+        ease: "power2.out"
+      });
+
+      gsap.from("#statusMessage", {
+        y: 15,
+        opacity: 0,
+        duration: 0.6,
+        delay: 1.6,
+        ease: "power2.out"
+      });
+
+      gsap.from(".feature-item", {
+        x: -40,
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.15,
+        delay: 1.8,
+        ease: "power2.out"
+      });
+
+      gsap.from("#btnHome", {
+        scale: 0.5,
+        opacity: 0,
+        duration: 0.6,
+        delay: 2.5,
+        ease: "back.out(1.7)"
+      });
+
+      gsap.from("#btnDash", {
+        scale: 0.5,
+        opacity: 0,
+        duration: 0.6,
+        delay: 2.7,
+        ease: "back.out(1.7)"
+      });
+
+      gsap.from("footer", {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        delay: 3.0,
+        ease: "power2.out"
+      });
+
+      
+
+    });
+  </script>
+
+</body>
+</html>

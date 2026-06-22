@@ -1,0 +1,70 @@
+/* accessibility.css */
+.dark-mode { background: #121212 !important; color: white !important; }
+.contrast-mode { background: black !important; color: yellow !important; }
+.grayscale-mode { filter: grayscale(100%); }
+.focus-mode *:focus { outline: 3px solid orange !important; outline-offset: 2px; }
+.dyslexia-font { font-family: Arial, Verdana, sans-serif !important; }
+.line-1 { line-height: 1 !important; }
+.line-15 { line-height: 1.5 !important; }
+.line-2 { line-height: 2 !important; }
+
+:root { --access-blue: #2054CE; }
+
+.accessibe-widget-btn {
+  position: fixed !important; bottom: 25px !important; right: 25px !important;
+  width: 60px !important; height: 60px !important;
+  background-color: var(--access-blue) !important; color: white !important;
+  border-radius: 50% !important; display: flex !important;
+  align-items: center !important; justify-content: center !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important; cursor: pointer !important;
+  z-index: 2147483647 !important; border: none !important;
+  transition: transform 0.2s ease-in-out !important;
+}
+.accessibe-widget-btn:hover { transform: scale(1.1) !important; }
+.accessibe-widget-btn i { font-size: 35px !important; }
+
+.access-panel {
+  position: fixed !important; bottom: 95px !important; right: 25px !important;
+  width: 360px !important; max-height: 80vh !important;
+  background: #ffffff !important; box-shadow: 0 10px 40px rgba(0,0,0,0.3) !important;
+  border-radius: 12px !important; z-index: 2147483647 !important;
+  display: flex !important; flex-direction: column !important;
+  font-family: 'Segoe UI', system-ui, sans-serif !important;
+  opacity: 0; pointer-events: none;
+  transform: translateY(20px) scale(0.95); transform-origin: bottom right;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.access-panel.open { opacity: 1; pointer-events: auto; transform: translateY(0) scale(1); }
+.access-header {
+  background: var(--access-blue) !important; color: white !important;
+  padding: 15px 20px !important; display: flex !important;
+  justify-content: space-between !important; align-items: center !important;
+  border-radius: 12px 12px 0 0 !important;
+}
+.access-header h5 { margin: 0 !important; font-size: 16px !important; font-weight: 700 !important; display: flex; align-items: center;}
+.access-close-btn { background: none; border: none; color: white; font-size: 24px; cursor: pointer; line-height: 1; }
+.access-body {
+  padding: 15px !important; background: #f4f6f9 !important;
+  overflow-y: auto !important; border-radius: 0 0 12px 12px !important;
+}
+.access-section-title {
+  font-size: 12px !important; font-weight: 700 !important; color: #555 !important;
+  text-transform: uppercase !important; margin: 15px 0 10px 0 !important;
+}
+.access-body .access-section-title:first-child { margin-top: 0 !important; }
+.access-grid { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 8px !important; }
+.access-item {
+  background: white !important; border: 1px solid #e1e4e8 !important; border-radius: 8px !important;
+  padding: 12px 5px !important; display: flex !important; flex-direction: column !important;
+  align-items: center !important; justify-content: center !important; text-align: center !important;
+  cursor: pointer !important; transition: all 0.2s ease !important; color: #333 !important;
+}
+.access-item i { font-size: 20px !important; color: var(--access-blue) !important; margin-bottom: 5px !important; }
+.access-item span { font-size: 10px !important; font-weight: 600 !important; line-height: 1.2 !important; }
+.access-item:hover { border-color: var(--access-blue) !important; box-shadow: 0 4px 10px rgba(32, 84, 206, 0.15) !important; }
+.access-reset-btn {
+  background: white !important; color: #dc3545 !important; border: 1px solid #dc3545 !important;
+  font-weight: 600 !important; padding: 10px !important; border-radius: 8px !important;
+  width: 100% !important; transition: 0.2s !important; margin-top: 15px !important; cursor: pointer;
+}
+.access-reset-btn:hover { background: #dc3545 !important; color: white !important; }
