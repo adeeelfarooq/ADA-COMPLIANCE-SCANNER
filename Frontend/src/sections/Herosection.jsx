@@ -82,11 +82,11 @@ const Herosection = () => {
                         clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)",
                     }} className="order-btn md:ml-[80%] ml-[70%] relative   flex  justify-center z-5000   ">
                         <button onClick={()=>{
-                            window.location.href = "http://20.198.20.235/login.html";
+                            window.location.href = "http://20.198.20.235:3000/login";
                         }}  className=" btn   md:font-bold md:h-10 md:w-25 md:mt-6  md:border-r-3 md:rounded-full md:mr-2  text-milk bg-orange-400 transition-all duration-1000 hover:text-orange-400 md:hover:border-r-9 hover:bg-blue-700 hover:cursor-pointer font-bold h-10 w-50 mt-6  border-r-3 rounded-full mr-2  hover:border-r-9   "
                         >LOGIN  </button>
                         <button onClick={()=>{
-                            window.location.href = "http://20.198.20.235/register.html";
+                            window.location.href = "http://20.198.20.235:3000/register";
                         }} className=" btn md:font-bold md:h-10 md:w-25 md:mt-6  md:border-r-3 md:rounded-full   text-milk bg-orange-400 transition-all duration-1000 hover:text-orange-400 md:hover:border-r-9 hover:bg-blue-700 hover:cursor-pointer font-bold h-10 w-50 mt-6  border-r-3 rounded-full hover:border-r-9  "
                         >SIGN UP </button>
                     </div>
