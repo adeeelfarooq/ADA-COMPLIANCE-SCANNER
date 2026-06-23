@@ -20,9 +20,7 @@ scanBtn.addEventListener('click', async () => {
   progress.classList.remove('d-none');
   try {
     //change1
-    const res = await fetch(
-  `/scan?url=${encodeURIComponent(url)}`
-);
+  const res = await fetch(`http://20.198.20.235:3002/scan?url=${encodeURIComponent(url)}`);
     const data = await res.json();
     progress.classList.add('d-none');
 
