@@ -1,3 +1,3 @@
 # React + Vite
 
-CI / CD 
+CI / CD on jenkins and azure
