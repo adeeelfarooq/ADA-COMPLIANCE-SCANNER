@@ -30,12 +30,12 @@ pipeline {
                     sh 'cp -r Frontend/dist/* /var/www/html/'
                     withEnv(['BUILD_ID=dontKillMe']) {
                         dir('Backend/Scanner-backend') {
-                            sh 'su -c "cd /var/lib/jenkins/workspace/devops-CI-CD/Backend/Scanner-backend && pm2 restart fyp-backend || pm2 start server.js --name fyp-backend" sp22-030'
+                            sh 'sudo -u sp22-030 bash -c "cd /var/lib/jenkins/workspace/devops-CI-CD/Backend/Scanner-backend && pm2 restart fyp-backend || pm2 start server.js --name fyp-backend"'
                         }
                         dir('Backend/Static-scanner') {
-                            sh 'su -c "cd /var/lib/jenkins/workspace/devops-CI-CD/Backend/Static-scanner && pm2 restart static-scanner || pm2 start server.js --name static-scanner" sp22-030'
+                            sh 'sudo -u sp22-030 bash -c "cd /var/lib/jenkins/workspace/devops-CI-CD/Backend/Static-scanner && pm2 restart static-scanner || pm2 start server.js --name static-scanner"'
                         }
-                        sh 'su -c "pm2 save" sp22-030'
+                        sh 'sudo -u sp22-030 pm2 save'
                     }
                 }
             }
