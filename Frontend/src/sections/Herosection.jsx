@@ -80,22 +80,26 @@ const Herosection = () => {
                 <div className='hero-container'>
                     <div style={{
                         clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)",
-                    }} className="order-btn md:ml-[80%] ml-[70%] relative   flex  justify-center z-5000   ">
+                    }} className="order-btn md:ml-[80%] ml-[70%] max-md:ml-[60%] relative   flex  justify-center z-5000   ">
                         <button onClick={()=>{
                             window.location.href = "/api/login";
-                        }}  className=" btn   md:font-bold md:h-10 md:w-25 md:mt-6  md:border-r-3 md:rounded-full md:mr-2  text-milk bg-orange-400 transition-all duration-1000 hover:text-orange-400 md:hover:border-r-9 hover:bg-blue-700 hover:cursor-pointer font-bold h-10 w-50 mt-6  border-r-3 rounded-full mr-2  hover:border-r-9   "
+                        }}  className=" btn   md:font-bold md:h-10 md:w-25 md:mt-6  md:border-r-3 md:rounded-full md:mr-2  text-milk bg-orange-400 transition-all duration-1000 hover:text-orange-400 md:hover:border-r-9 hover:bg-blue-700 hover:cursor-pointer font-bold h-10 max-md:w-50 max-md:mt-6  border-r-3 rounded-full mr-2  hover:border-r-9   "
                         >LOGIN  </button>
                         <button onClick={()=>{
                             window.location.href = "/api/register";
-                        }} className=" btn md:font-bold md:h-10 md:w-25 md:mt-6  md:border-r-3 md:rounded-full   text-milk bg-orange-400 transition-all duration-1000 hover:text-orange-400 md:hover:border-r-9 hover:bg-blue-700 hover:cursor-pointer font-bold h-10 w-50 mt-6  border-r-3 rounded-full hover:border-r-9  "
+                        }} className=" btn md:font-bold md:h-10 md:w-25 md:mt-6  md:border-r-3 md:rounded-full   text-milk bg-orange-400 transition-all duration-1000 hover:text-orange-400 md:hover:border-r-9 hover:bg-blue-700 hover:cursor-pointer font-bold h-10 max-md:w-50 max-md:mt-6  border-r-3 rounded-full hover:border-r-9  "
                         >SIGN UP </button>
                     </div>
-                    <div className=" eyes absolute top-10  md:translate-x-281 translate-x-85 w-[20px] h-[20px] md:w-[120px] md:h-[120px] z-50 md:scale-100 scale-90  ">
-                        <Eyesthree />
-                    </div>
-                    <div className="eyes absolute top-10  md:translate-x-307 translate-x-105 w-[20px] h-[20px] md:w-[120px] md:h-[120px] z-50 md:scale-100 scale-90 ">
-                        <Eyesthree />
-                    </div>
+                    {!isMobile && !isTablet && (
+    <>
+        <div className="eyes absolute top-10 md:translate-x-281 translate-x-85 max-md:w-[20px] max-md:h-[20px] md:w-[120px] md:h-[120px] z-50 md:scale-100 scale-90">
+            <Eyesthree />
+        </div>
+        <div className="eyes absolute top-10 md:translate-x-307 translate-x-105 w-[20px] h-[20px] md:w-[120px] md:h-[120px] z-50 md:scale-100 scale-90">
+            <Eyesthree />
+        </div>
+    </>
+)}
                     {
                         isTablet ? (
                             <> {
@@ -119,7 +123,7 @@ const Herosection = () => {
                             clipPath: "polygon(50% 0, 0% 0, 0% 100%, 100% 100%)",
                         }}
                             className="hero-text-scroll">
-                            <div className="hero-subtitle">
+                            <div className="hero-subtitle max-md:text-[1.5rem]">
                                 <h1>Make your website accessible for everyone</h1>
                             </div>
                         </div >

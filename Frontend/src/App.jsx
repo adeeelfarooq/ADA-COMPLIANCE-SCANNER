@@ -23,6 +23,7 @@ const App = () => {
   ScrollSmoother.create({
     smooth: 3,
     effects: true,
+    normalizeScroll: true,
   } )
 })  
   return (
