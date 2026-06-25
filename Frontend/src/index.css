@@ -74,7 +74,7 @@ body::-webkit-scrollbar {
       }
 
       .hero-text-scroll {
-        @apply max-md:mb-12 mb-2  border-[.5vw] border-milk max-md:-mt-2 ;
+        @apply max-md:mb-10 mb-2  border-[.5vw] border-milk max-md:-mt-2 ;
 
         .hero-subtitle {
           @apply bg-orange-400   ;

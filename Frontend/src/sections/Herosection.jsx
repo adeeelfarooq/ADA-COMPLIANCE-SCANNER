@@ -123,7 +123,7 @@ const Herosection = () => {
                             clipPath: "polygon(50% 0, 0% 0, 0% 100%, 100% 100%)",
                         }}
                             className="hero-text-scroll">
-                            <div className="hero-subtitle max-md:text-[1.5rem]">
+                            <div className="hero-subtitle max-md:text-[1.4rem]">
                                 <h1>Make your website accessible for everyone</h1>
                             </div>
                         </div >
