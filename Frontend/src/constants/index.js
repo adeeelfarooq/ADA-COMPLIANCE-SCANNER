@@ -10,7 +10,7 @@ const howitworkslists = [
     Caption: "Automated Scan",
     image:"scanw",
     trans: "translate-x-1 translate-y-4 md:scale-100 scale-90 ",
-    rotation: "md:rotate-[8deg] rotate-0 md:scale-100 scale-110",
+    rotation: "md:rotate-[8deg] rotate-0 md:scale-110 scale-110",
   },
   {
     Caption: "Get Report  ",

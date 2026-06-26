@@ -86,7 +86,7 @@ const AccessibilityStatsSection = () => {
             <img src="\images\bgbg.jpeg" alt="" className='big-img' />
             <div className="flex md:flex-row flex-col justify-between  md:px-10 px-5 mt-14 md:mt-0">
                 <div className="relative inline-block md:translate-y-20">
-                    <div className="general-title relative flex flex-col items-center gap-24 ">
+                    <div className="general-title relative flex flex-col items-center gap-24 max-md: ">
                         <div className=" place-self-start ">
                             <h1 className="nutrition-title ">ADA Accessibility  </h1>
                         </div>
@@ -102,7 +102,7 @@ const AccessibilityStatsSection = () => {
                 </div>
                 <div className=" flex md:justify-center md:items-center justify-end items-end md:translate-y-5 -translate-y-30  ">
                     <div className="md:max-w-xs max-w-[200px]   ">
-                        <p className='md:text-lg md:text-right text-xs  text-balance font-paragraph md:-mt-0 -mt-3  '>This page has been analyzed for accessibility issues including color contrast, alt text, ARIA roles, and semantic structure.</p>
+                        <p className='md:text-lg md:text-right text-xs max-md:mt-10 text-balance font-paragraph md:-mt-0 -mt-3  '>This page has been analyzed for accessibility issues including color contrast, alt text, ARIA roles, and semantic structure.</p>
                     </div>
                 </div>
                 <div className="nutrition-box">
