@@ -3,20 +3,20 @@ const howitworkslists = [
     Caption: "Enter Website URL",
     trans: "md:translate-y-10 md:-translate-x-10 translate-y-10 -translate-x-5",
     image:"weurl",
-    rotation: "md:rotate-[-8deg] rotate-0 scale-90  ",
+    rotation: "md:rotate-[-8deg] rotate-0 max-md:scale-87 max-md:-translate-x-2  ",
     
   },
   {
     Caption: "Automated Scan",
     image:"scanw",
-    trans: "translate-x-3 translate-y-4 md:scale-100 scale-90 ",
+    trans: "translate-x-1 translate-y-4 md:scale-100 scale-90 ",
     rotation: "md:rotate-[8deg] rotate-0 md:scale-100 scale-110",
   },
   {
     Caption: "Get Report  ",
     image:"report2",
-     trans: "md:-translate-x-10 md:-translate-y-2 -translate-x-3 translate-y-2 ",
-    rotation: "md:rotate-[-8deg] rotate-0 mt-10",
+     trans: "md:-translate-x-10 md:-translate-y-2 max-md:scale-105   -translate-x-5 translate-y-3 ",
+    rotation: "md:rotate-[-8deg]  rotate-0 mt-10 max-md:scale-90 ",
   },
  
 ];
