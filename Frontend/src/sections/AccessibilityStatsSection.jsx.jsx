@@ -84,9 +84,9 @@ const AccessibilityStatsSection = () => {
         <section className='nutrition-section'>
 
             <img src="\images\bgbg.jpeg" alt="" className='big-img max-md:scale-x-120 max-md:scale-400 max-md:top-[145%] ' />
-            <div className="flex md:flex-row flex-col justify-between  md:px-10 px-5 mt-14 md:mt-0">
+            <div className="flex md:flex-row flex-col justify-between  md:px-10 px-5 max-md:px-0 mt-14 md:mt-0">
                 <div className="relative inline-block md:translate-y-20">
-                    <div className="general-title relative flex flex-col items-center gap-24 max-md:scale-85 max-md:left-[-7%] max-md:-mt-2">
+                    <div className="general-title relative flex flex-col items-center gap-24 max-md:scale-77 max-md:left-[-7%]  max-md:-mt-2">
                         <div className=" place-self-start ">
                             <h1 className="nutrition-title ">ADA Accessibility  </h1>
                         </div>
@@ -101,8 +101,8 @@ const AccessibilityStatsSection = () => {
                     </div>
                 </div>
                 <div className=" flex md:justify-center md:items-center justify-end items-end md:translate-y-5 -translate-y-30  ">
-                    <div className="md:max-w-xs max-w-[200px]   ">
-                        <p className='md:text-lg md:text-right text-xs max-md:mt-10 text-balance font-paragraph md:-mt-0 -mt-3  '>This page has been analyzed for accessibility issues including color contrast, alt text, ARIA roles, and semantic structure.</p>
+                    <div className="md:max-w-xs max-w-[200px] max-md:max-w-[230px]   ">
+                        <p className='md:text-lg md:text-right text-xs max-md:mt-8 pl-15  max-md:translate-x-4  max-md:scale-80 text-balance font-paragraph md:-mt-0 -mt-3   '>This page has been analyzed for accessibility issues including color contrast, alt text, ARIA roles, and semantic structure.</p>
                     </div>
                 </div>
                 <div className="nutrition-box">
