@@ -83,10 +83,10 @@ const AccessibilityStatsSection = () => {
     return (
         <section className='nutrition-section'>
 
-            <img src="\images\bgbg.jpeg" alt="" className='big-img' />
+            <img src="\images\bgbg.jpeg" alt="" className='big-img max-md:scale-x-120 max-md:scale-400 max-md:top-[145%] ' />
             <div className="flex md:flex-row flex-col justify-between  md:px-10 px-5 mt-14 md:mt-0">
                 <div className="relative inline-block md:translate-y-20">
-                    <div className="general-title relative flex flex-col items-center gap-24 max-md: ">
+                    <div className="general-title relative flex flex-col items-center gap-24 max-md:scale-85 max-md:left-[-7%] max-md:-mt-2">
                         <div className=" place-self-start ">
                             <h1 className="nutrition-title ">ADA Accessibility  </h1>
                         </div>
