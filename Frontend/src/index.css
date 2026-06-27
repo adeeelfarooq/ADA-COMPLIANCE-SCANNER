@@ -233,10 +233,10 @@ body::-webkit-scrollbar {
   }
 
   .testimonials-section {
-    @apply bg-gradient-to-r from-orange-400 to-transparent relative w-full h-[120dvh];
+    @apply bg-gradient-to-r from-orange-400 to-transparent relative w-full h-[120dvh] ;
 
     .pin-box {
-      @apply flex items-center justify-center w-full ps-52 absolute 2xl:bottom-32 md:bottom-[50vh] max-md:bottom-[20vh];
+      @apply flex items-center justify-center w-full max-md:ps-45  ps-52 absolute 2xl:bottom-32 md:bottom-[50vh] max-md:bottom-[8vh] bottom-[8vh];
 
       .vd-card {
         @apply md:w-200 w-80 flex-none md:rounded-[2vw] rounded-3xl max-md:-ms-44 -ms-44 overflow-hidden 2xl:relative absolute border-[.5vw] border-milk;
