@@ -101,7 +101,7 @@ const AccessibilityStatsSection = () => {
                     </div>
                 </div>
                 <div className=" flex md:justify-center md:items-center justify-end items-end md:translate-y-5 -translate-y-30  ">
-                    <div className="md:max-w-xs max-w-[200px] max-md:max-w-[230px]   ">
+                    <div className="md:max-w-xs max-w-[200px] max-md:max-w-[260px]   ">
                         <p className='md:text-lg md:text-right text-xs max-md:mt-8 pl-15  max-md:translate-x-6  max-md:scale-65 text-balance font-paragraph md:-mt-0 -mt-3   '>This page has been analyzed for accessibility issues including color contrast, alt text, ARIA roles, and semantic structure.</p>
                     </div>
                 </div>
