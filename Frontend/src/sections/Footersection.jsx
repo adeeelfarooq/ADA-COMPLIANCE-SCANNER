@@ -50,8 +50,8 @@ const Footersection = () => {
 
     })
     return (
-        <section className='footer-section ' >
-            <img src="\images\footer-dip.png" alt="" className='w-full max-md:-mt-1  object-cover translate-y-1' />
+        <section className='footer-section  ' >
+            <img src="\images\footer-dip.png" alt="" className='w-full max-md:-mt-1   object-cover translate-y-1' />
             <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-transparent "></div>
 
             <div className="2xl:h-[110dvh] relative md:pt-[20vh] pt-[10vh]">
@@ -72,7 +72,7 @@ const Footersection = () => {
                 ></video> */}
 
 
-                <div className='flex-center gap-5 md:relative absolute md:translate-x-0 translate-x-35 z-10 md:mt-20 mt-5'>
+                <div className='flex-center gap-5 max-md:pt-10 md:relative absolute md:translate-x-0 translate-x-25 z-10 md:mt-20 mt-5'>
                     <div className="social-btn">
                         <img src="\images\yt.svg" alt="" />
                     </div>
@@ -85,25 +85,25 @@ const Footersection = () => {
 
                 </div>
 
-                <div className="md:mt-49 mt-25 md:px-1 px-5 flex gap-10 md:flex-row flex-col justify-between text-milk font-paragraph md:text-lg font-medium">
-                    <div className="flex items-center md:gap-16 gap-5 ">
+                <div className="md:mt-49 mt-25 md:px-1 px-5 flex gap-10 md:flex-row flex-col text-xs justify-between text-milk font-paragraph md:text-lg font-medium">
+                    <div className="flex items-center max-md:pt-20 md:gap-16 gap-5 ">
                         <div>
-                            <p>ADA Compliance Scanner</p>
+                            <p className='max-md:whitespace-nowrap'>ADA Compliance Scanner</p>
 
                         </div>
 
                         <div>
-                            <p>Resources</p>
-                            <p>WCAG Guidelines</p>
-                            <p>Best Practices</p>
-                            <p>Tutorials</p>
+                            <p className='max-md:whitespace-nowrap cursor-pointer'>Resources</p>
+                            <p className='max-md:whitespace-nowrap cursor-pointer'>WCAG Guidelines</p>
+                            <p className='max-md:whitespace-nowrap cursor-pointer'>Best Practices</p>
+                            <p className='max-md:whitespace-nowrap cursor-pointer'>Tutorials</p>
                         </div>
 
                         <div>
-                            <p>Support</p>
-                            <p>Contact Us</p>
-                            <p>Report Issue</p>
-                            <p>FAQs</p>
+                            <p className='max-md:whitespace-nowrap cursor-pointer'>Support</p>
+                            <p className='max-md:whitespace-nowrap cursor-pointer'>Contact Us</p>
+                            <p className='max-md:whitespace-nowrap cursor-pointer'>Report Issue</p>
+                            <p className='max-md:whitespace-nowrap cursor-pointer '>FAQs</p>
                         </div>
                     </div>
                     <div className="max-w-lg ">
@@ -116,10 +116,10 @@ const Footersection = () => {
                     <br />
 
                     <div className="copyright-box">
-                        <p>Copyright © 2025 ADA Scanner - All Rights Reserved</p>
+                        <p>Copyright © {new Date().getFullYear()} ADA Scanner - All Rights Reserved</p>
                         <div className="flex item-center gap-7">
-                            <p>Privacy Policy</p>
-                            <p>Terms Of Services</p>
+                            <p className='cursor-pointer'>Privacy Policy</p>
+                            <p className='cursor-pointer'>Terms Of Services</p>
                         </div>
                     </div>
 
