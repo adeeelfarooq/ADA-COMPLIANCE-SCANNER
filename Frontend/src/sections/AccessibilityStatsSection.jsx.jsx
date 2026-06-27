@@ -93,7 +93,7 @@ const AccessibilityStatsSection = () => {
                         <div style={{
                             clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)"
                         }} className="nutrition-text-scroll place-self-start">
-                            <div className="bg-orange-400 pb-5 md:pt-0 pt-3 md:px-20 px-10  inline-block">
+                            <div className="bg-orange-400 pb-5 md:pt-0 pt-3 max-md:mt-2 md:px-20 px-10  inline-block">
                                 <h2 className='text-milk-yellow '> Scan Report</h2>
                             </div>
                         </div>
@@ -102,7 +102,7 @@ const AccessibilityStatsSection = () => {
                 </div>
                 <div className=" flex md:justify-center md:items-center justify-end items-end md:translate-y-5 -translate-y-30  ">
                     <div className="md:max-w-xs max-w-[200px] max-md:max-w-[260px]   ">
-                        <p className='md:text-lg md:text-right text-xs max-md:mt-8 max-md:pl-15  max-md:translate-x-8  max-md:scale-65 text-balance font-paragraph md:-mt-0 -mt-3   '>This page has been analyzed for accessibility issues including color contrast, alt text, ARIA roles, and semantic structure.</p>
+                        <p className='md:text-lg md:text-right text-xs max-md:mt-3 max-md:pl-15  max-md:translate-x-8  max-md:scale-65 text-balance font-paragraph md:-mt-0 -mt-3   '>This page has been analyzed for accessibility issues including color contrast, alt text, ARIA roles, and semantic structure.</p>
                     </div>
                 </div>
                 <div className="nutrition-box">
