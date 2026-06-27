@@ -29,7 +29,7 @@ const Tryitnowsection = () => {
             xPercent:-600,
             duration: 1,
         } , "<").from(".testimonials-section .third-title" , {
-            yPercent:350,
+            yPercent:550,
             duration: 1,
         } , "<")
 
@@ -46,7 +46,7 @@ const Tryitnowsection = () => {
     }) 
 
     pinTl.from(".vd-card" , {
-        yPercent:115 , 
+        yPercent:150 , 
         stagger:0.02,
         ease:"power1.inOut",
     })
@@ -63,8 +63,8 @@ const Tryitnowsection = () => {
         video.pause();
     }
   return (
-    <section className="testimonials-section max-md:mt-30">
-        <div className="absolute size-full flex flex-col items-center pt-[5vw] md:mt-0 mt-11 gap-19 md:gap-0 ">
+    <section className="testimonials-section">
+        <div className="absolute size-full flex flex-col items-center pt-[5vw] md:mt-0 max-md:mt-20 mt-11 gap-19 md:gap-0 ">
             <h1 className='text-blue-600 text first-title md:ml-200 ml-80 max-md:ml-70'>Try</h1>
             <h1 className='text-orange-400 second-title '>It</h1>
             <h1 className='text-blue-600 third-title m md:mr-200 mr-75 max-md:mr-65'>Now</h1>
