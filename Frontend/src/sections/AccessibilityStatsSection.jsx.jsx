@@ -92,8 +92,8 @@ const AccessibilityStatsSection = () => {
                         </div>
                         <div style={{
                             clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)"
-                        }} className="nutrition-text-scroll place-self-start">
-                            <div className="bg-orange-400 pb-5 md:pt-0 pt-3 max-md:mt-2 md:px-20 px-10  inline-block">
+                        }} className="nutrition-text-scroll place-self-start ">
+                            <div className="bg-orange-400 pb-5 md:pt-0 pt-3  md:px-20 px-10  inline-block">
                                 <h2 className='text-milk-yellow '> Scan Report</h2>
                             </div>
                         </div>

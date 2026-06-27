@@ -172,7 +172,7 @@ body::-webkit-scrollbar {
     }
 
     .nutrition-text-scroll {
-      @apply md:rotate-[-15deg] rotate-[-12deg] border-[.5vw] border-[#e3d3bc] text-nowrap opacity-0 md:-mt-32 -mt-26 -translate-x-2 ;
+      @apply md:rotate-[-15deg] rotate-[-12deg] border-[.5vw] border-[#e3d3bc] max-md:-mt-24 text-nowrap opacity-0 md:-mt-32 -mt-26 -translate-x-2 ;
     }
 
     .nutrition-box {

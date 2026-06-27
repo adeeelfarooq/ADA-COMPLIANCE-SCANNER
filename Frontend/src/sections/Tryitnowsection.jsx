@@ -63,11 +63,11 @@ const Tryitnowsection = () => {
         video.pause();
     }
   return (
-    <section className="testimonials-section">
+    <section className="testimonials-section max-md:mt-30">
         <div className="absolute size-full flex flex-col items-center pt-[5vw] md:mt-0 mt-11 gap-19 md:gap-0 ">
-            <h1 className='text-blue-600 text first-title md:ml-200 ml-80'>Try</h1>
+            <h1 className='text-blue-600 text first-title md:ml-200 ml-80 max-md:ml-70'>Try</h1>
             <h1 className='text-orange-400 second-title '>It</h1>
-            <h1 className='text-blue-600 third-title m md:mr-200 mr-75'>Now</h1>
+            <h1 className='text-blue-600 third-title m md:mr-200 mr-75 max-md:mr-65'>Now</h1>
         </div>
         <div className="pin-box">
             {
