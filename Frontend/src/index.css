@@ -233,7 +233,7 @@ body::-webkit-scrollbar {
   }
 
   .testimonials-section {
-    @apply bg-gradient-to-r from-orange-400 to-white relative w-full h-[120dvh];
+    @apply bg-gradient-to-r from-orange-400 to-transparent relative w-full h-[120dvh];
 
     .pin-box {
       @apply flex items-center justify-center w-full ps-52 absolute 2xl:bottom-32 md:bottom-[50vh] max-md:bottom-[20vh];

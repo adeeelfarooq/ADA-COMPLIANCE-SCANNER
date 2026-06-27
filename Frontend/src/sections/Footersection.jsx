@@ -50,8 +50,9 @@ const Footersection = () => {
 
     })
     return (
-        <section className='footer-section'>
-            <img src="\images\footer-dip.png" alt="" className='w-full  object-cover translate-y-1' />
+        <section className='footer-section ' >
+            <img src="\images\footer-dip.png" alt="" className='w-full max-md:-mt-1  object-cover translate-y-1' />
+            <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-transparent "></div>
 
             <div className="2xl:h-[110dvh] relative md:pt-[20vh] pt-[10vh]">
                 <div className="overflow-hidden ">
