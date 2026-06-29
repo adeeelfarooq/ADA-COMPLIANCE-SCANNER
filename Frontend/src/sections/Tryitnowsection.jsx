@@ -40,6 +40,7 @@ const Tryitnowsection = () => {
             end:"100% top",
             scrub: 1.5,
             pin: true,
+             
             
             
         }
