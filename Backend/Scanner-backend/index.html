@@ -148,7 +148,7 @@
         </div>
       </div>
 
-      <button class="btn btn-dashboard" onclick="window.location.href='/dashboard'">
+      <button class="btn btn-dashboard" onclick="window.location.href='dashboard.html'">
         Go to Dashboard
       </button>
     </div>
@@ -277,7 +277,7 @@
 
     onAuthStateChanged(auth, user => {
       if (!user) {
-        window.location.href = "/login";
+        window.location.href = "login.html";
       } else {
         loadCredits();
       }
