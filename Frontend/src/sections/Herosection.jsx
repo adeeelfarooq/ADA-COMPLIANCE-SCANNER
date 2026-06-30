@@ -82,11 +82,11 @@ const Herosection = () => {
                         clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)",
                     }} className="order-btn md:ml-[80%] ml-[70%] max-md:ml-[60%] relative   flex  justify-center z-5000   ">
                         <button onClick={()=>{
-                            window.location.href = "/login";
+                            window.location.href = "/api/login";
                         }}  className=" btn   md:font-bold md:h-10 md:w-25 md:mt-6  md:border-r-3 md:rounded-full md:mr-2  text-milk bg-orange-400 transition-all duration-1000 hover:text-orange-400 md:hover:border-r-9 hover:bg-blue-700 hover:cursor-pointer font-bold h-10 max-md:w-50 max-md:mt-6  border-r-3 rounded-full mr-2  hover:border-r-9   "
                         >LOGIN  </button>
                         <button onClick={()=>{
-                            window.location.href = "/register";
+                            window.location.href = "/api/register";
                         }} className=" btn md:font-bold md:h-10 md:w-25 md:mt-6  md:border-r-3 md:rounded-full   text-milk bg-orange-400 transition-all duration-1000 hover:text-orange-400 md:hover:border-r-9 hover:bg-blue-700 hover:cursor-pointer font-bold h-10 max-md:w-50 max-md:mt-6  border-r-3 rounded-full hover:border-r-9  "
                         >SIGN UP </button>
                     </div>
@@ -132,7 +132,7 @@ const Herosection = () => {
                         </h2>
                         <div className="hero-button">
                             <p onClick={()=>{
-                                window.location.href = "/login";
+                                window.location.href = "/api/login";
                             }}  >Scan Now </p>
                         </div>
                     </div>
