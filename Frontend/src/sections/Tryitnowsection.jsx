@@ -63,6 +63,20 @@ const Tryitnowsection = () => {
         const video = vdRef.current[index];
         video.pause();
     }
+     const handleMobileTap = (index) => {
+        if (isMobileRef.current) { // Sirf Mobile par click chalay ga
+            const video = vdRef.current[index];
+            if (video) {
+                if (video.paused) {
+                    video.play();
+                } else {
+                    video.pause();
+                }
+            }
+        }
+    };
+
+
   return (
     <section className="testimonials-section">
         <div className="absolute size-full flex flex-col items-center pt-[5vw] md:mt-0 max-md:mt-20 mt-11 gap-19 md:gap-0 ">
@@ -76,14 +90,17 @@ const Tryitnowsection = () => {
                     <div key={index} className={`vd-card ${card.translation} ${card.rotation} `}
                     onMouseEnter={()=> handleplay(index)} 
                     onMouseLeave={()=> handlepause(index)}
+                    onClick={() => handleMobileTap(index)} 
                     >
                        <video 
                        ref={(el) => (vdRef.current[index]=el)}
                        src={card.src}
                        playsInline
+                       webkit-playsinline="true"
                        muted
                        loop
-                       className='sized-full object-cover  '
+                       preload="metadata"
+                       className='size-full object-cover  '
                        ></video>
                     </div>
                 ))
