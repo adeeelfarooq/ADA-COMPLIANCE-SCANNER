@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { cards } from '../constants'
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -53,18 +53,59 @@ const Tryitnowsection = () => {
     })
     })
 
-    
+    // 🚀 FIX: Mobile browsers (khaas kar iOS Safari) muted/looped video ka
+    // first frame paint nahi karte jab tak video ek dafa play na ho jaye.
+    // Isi wajah se scroll pe khali box + border dikhta tha. Fix: load()
+    // call karke currentTime thora sa aage set karo taake browser force
+    // se ek frame render kar de, chahe video pause hi kyun na ho.
+    useEffect(() => {
+        vdRef.current.forEach((video) => {
+            if (!video) return;
+
+            const forceFirstFrame = () => {
+                try {
+                    video.currentTime = 0.01;
+                } catch (e) {
+                    // Metadata load hone se pehle currentTime set nahi hota kuch browsers mein
+                }
+            };
+
+            if (video.readyState >= 1) {
+                forceFirstFrame();
+            } else {
+                video.addEventListener('loadedmetadata', forceFirstFrame, { once: true });
+            }
+
+            video.load();
+        });
+    }, []);
+
+    const isMobileRef = useRef(window.innerWidth <= 768);
+    useEffect(() => {
+        const mq = window.matchMedia('(max-width: 768px)');
+        const update = (e) => { isMobileRef.current = e.matches; };
+        isMobileRef.current = mq.matches;
+        mq.addEventListener('change', update);
+        return () => mq.removeEventListener('change', update);
+    }, []);
 
     const handleplay = (index) =>{
-        const video = vdRef.current[index];
-        video.play();
+        if (!isMobileRef.current) { // Sirf Desktop par hover chalay ga
+            const video = vdRef.current[index];
+            if (video) video.play();
+        }
     };
     const handlepause = (index) =>{
-        const video = vdRef.current[index];
-        video.pause();
+        if (!isMobileRef.current) { // Sirf Desktop par hover chalay ga
+            const video = vdRef.current[index];
+            if (video) video.pause();
+        }
     }
-     const handleMobileTap = (index) => {
-        if (isMobileRef.current) { // Sirf Mobile par click chalay ga
+
+    // 🚀 NEW: Mobile ke liye asal "tap to play" — pehle sirf hover tha
+    // jo mobile pe kaam hi nahi karta tha
+    const handleMobileTap = (index) => {
+        if (isMobileRef.current) {
             const video = vdRef.current[index];
             if (video) {
                 if (video.paused) {
@@ -75,7 +116,6 @@ const Tryitnowsection = () => {
             }
         }
     };
-
 
   return (
     <section className="testimonials-section">
@@ -90,7 +130,7 @@ const Tryitnowsection = () => {
                     <div key={index} className={`vd-card ${card.translation} ${card.rotation} `}
                     onMouseEnter={()=> handleplay(index)} 
                     onMouseLeave={()=> handlepause(index)}
-                    onClick={() => handleMobileTap(index)} 
+                    onClick={() => handleMobileTap(index)}
                     >
                        <video 
                        ref={(el) => (vdRef.current[index]=el)}
@@ -100,7 +140,7 @@ const Tryitnowsection = () => {
                        muted
                        loop
                        preload="metadata"
-                       className='size-full object-cover  '
+                       className='size-full object-cover pointer-events-none'
                        ></video>
                     </div>
                 ))
