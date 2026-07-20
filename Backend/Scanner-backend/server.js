@@ -416,7 +416,7 @@ app.post('/buy-pro', async (req, res) => {
       ],
 
       success_url: 'http://20.198.20.235/success.html',
-      cancel_url: '/index'
+      cancel_url: '/scan'
     });
 
     res.json({
