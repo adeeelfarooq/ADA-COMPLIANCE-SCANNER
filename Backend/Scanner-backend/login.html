@@ -44,7 +44,7 @@
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           alert("Login successful!");
-          window.location.href = "dashboard.html"; // Correct Redirect
+          window.location.href = "/dashboard"; // Correct Redirect
         })
         .catch((error) => {
           alert(" Error: " + error.message);
@@ -208,7 +208,7 @@
       <button type="submit" class="btn btn-orange"><span>Login</span></button>
 
       <p class="mt-3 text-center">
-        Don’t have an account? <a href="register.html">Register</a>
+        Don’t have an account? <a href="/register">Register</a>
       </p>
     </form>
   </div>

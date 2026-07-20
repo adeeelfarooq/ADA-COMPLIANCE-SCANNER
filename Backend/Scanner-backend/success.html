@@ -368,10 +368,10 @@
       
       </div>
       <div class="d-flex gap-2 align-items-center">
-        <a href="http://localhost:3000/index.html" class="btn btn-dashboard">
+        <a href="/index" class="btn btn-dashboard">
            Scan
         </a>
-        <a href="dashboard.html" class="btn btn-dashboard2">
+        <a href="/dashboard" class="btn btn-dashboard2">
            Go to Dashboard
         </a>
       </div>
@@ -441,10 +441,10 @@
 
       <!-- Action Buttons -->
       <div class="d-flex justify-content-center gap-3 flex-wrap mt-4 btn-actions" id="btnActions">
-        <a href="index.html" class="btn-home" id="btnHome">
+        <a href="/index" class="btn-home" id="btnHome">
           <i class="bi bi-rocket-takeoff"></i> Start Scanning
         </a>
-        <a href="dashboard.html" class="btn-dashboard-bottom" id="btnDash">
+        <a href="/dashboard" class="btn-dashboard-bottom" id="btnDash">
           <i class="bi bi-grid-1x2"></i> View Dashboard
         </a>
       </div>
@@ -486,7 +486,7 @@
         statusEl.innerHTML = `
           <div class="status-fail">
             <i class="bi bi-exclamation-triangle-fill me-2"></i>
-            <span class="fw-bold" style="color:var(--blue);">Session expired. Please <a href="login.html" style="color:var(--brand);">login again</a> to activate.</span>
+            <span class="fw-bold" style="color:var(--blue);">Session expired. Please <a href="/login" style="color:var(--brand);">login again</a> to activate.</span>
           </div>`;
         return;
       }
@@ -545,7 +545,7 @@
         document.getElementById("statusMessage").innerHTML = `
           <div class="status-fail">
             <i class="bi bi-person-x-fill me-2"></i>
-            <span class="fw-bold" style="color:var(--blue);">Not logged in. <a href="login.html" style="color:var(--brand);">Login here</a></span>
+            <span class="fw-bold" style="color:var(--blue);">Not logged in. <a href="/login" style="color:var(--brand);">Login here</a></span>
           </div>`;
       }
     });

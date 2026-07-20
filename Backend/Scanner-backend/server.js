@@ -36,19 +36,19 @@ app.use(express.json());
 
 // ==================== Routes for HTML ====================
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'register.html'));
+  res.sendFile(path.join(__dirname, '/register'));
 });
 
 app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'login.html'));
+  res.sendFile(path.join(__dirname, '/login'));
 });
 
 app.get('/register', (req, res) => {
-  res.sendFile(path.join(__dirname, 'register.html'));
+  res.sendFile(path.join(__dirname, '/register'));
 });
 
 app.get('/dashboard', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dashboard.html'));
+  res.sendFile(path.join(__dirname, '/dashboard'));
 });
 
 // Serve static assets (CSS, JS, images)
@@ -416,7 +416,7 @@ app.post('/buy-pro', async (req, res) => {
       ],
 
       success_url: 'http://20.198.20.235/success.html',
-      cancel_url: 'http://20.198.20.235/index.html'
+      cancel_url: '/index'
     });
 
     res.json({
