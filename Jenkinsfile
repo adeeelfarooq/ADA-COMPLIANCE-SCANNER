@@ -5,7 +5,11 @@ pipeline {
             steps {
                 dir('Frontend') {
                     sh '''
-                    npm ci
+                    if [ ! -d "node_modules" ]; then
+                        npm ci
+                    else
+                        npm ci --prefer-offline
+                    fi
                     npm run build
                     '''
                 }
@@ -15,11 +19,23 @@ pipeline {
             steps {
                 echo "📦 Building Scanner Backend (Mode 1)..."
                 dir('Backend/Scanner-backend') {
-                    sh 'npm ci'
+                    sh '''
+                    if [ ! -d "node_modules" ]; then
+                        npm ci
+                    else
+                        npm ci --prefer-offline
+                    fi
+                    '''
                 }
                 echo "📦 Building Static Scanner (Mode 2)..."
                 dir('Backend/Static-scanner') {
-                    sh 'npm ci'
+                    sh '''
+                    if [ ! -d "node_modules" ]; then
+                        npm ci
+                    else
+                        npm ci --prefer-offline
+                    fi
+                    '''
                 }
             }
         }
