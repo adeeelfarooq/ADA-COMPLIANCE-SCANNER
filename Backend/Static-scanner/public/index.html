@@ -343,9 +343,14 @@
   </div>
 
   <!-- Footer -->
-  <footer class="gsap-footer">
-    <small>Copyright © {new Date().getFullYear()} ADA Scanner - All Rights Reserved</small>
-  </footer>
+ <footer class="py-4 text-center">
+  <small class="text-muted" id="copyright"></small>
+</footer>
+
+<script>
+  document.getElementById("copyright").innerHTML =
+    `Copyright © ${new Date().getFullYear()} ADA Scanner - All Rights Reserved`;
+</script>
 
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
