@@ -8,7 +8,7 @@ import React from 'react'
 const Footersection = () => {
 
     useGSAP(() => {
-        const Split = SplitText.create(".wecare" , {type: "chars"})
+        const Split = SplitText.create(".wecare", { type: "chars" })
 
 
         const footerimg = gsap.timeline({
@@ -18,23 +18,23 @@ const Footersection = () => {
                 start: "center 50%",
                 end: "bottom bottom",
 
-                
+
 
             }
 
         })
-        footerimg.from(Split.chars,{
+        footerimg.from(Split.chars, {
             yPercent: 200,
             stagger: 0.1,
             ease: "power2.inOut"
         })
 
-         const footertitle = gsap.timeline({
+        const footertitle = gsap.timeline({
             delay: 0,
             scrollTrigger: {
                 trigger: ".footer-section",
                 start: "center 50%",
-                end: "bottom bottom",   
+                end: "bottom bottom",
                 scrub: true,
             }
 
@@ -45,7 +45,7 @@ const Footersection = () => {
 
         })
 
-        
+
 
 
     })
@@ -59,9 +59,20 @@ const Footersection = () => {
                     <h1 className='general-title wecare relative z-3000 text-center text-milk py-5 md:-ml-0 -ml-2   '>#WECAREFORALL</h1>
                 </div>
 
-                <img className=' Ada absolute -ml-17 scale-30 -translate-y-107 md:ml-40 md:-translate-y-60 md:scale-80 mix-blend-plus-darker' src='\images\Ada-footer-1.png' />
-                <img className=' Ada absolute ml-72 scale-30 -translate-y-107 md:ml-230 md:-translate-y-60 md:scale-80 mix-blend-plus-darker z-100' src='\images\Ada-footer-2.png' />
-                <img className=' Ada absolute ml-85 scale-30 -translate-y-107 md:ml-282 md:-translate-y-60 md:scale-80 mix-blend-plus-darker' src='\images\Ada-footer-3.png' />
+                <img
+                    className="hidden md:block Ada absolute -ml-17 scale-30 -translate-y-107 md:ml-40 md:-translate-y-60 md:scale-80 mix-blend-plus-darker"
+                    src="/images/Ada-footer-1.png"
+                />
+
+                <img
+                    className="hidden md:block Ada absolute ml-72 scale-30 -translate-y-107 md:ml-230 md:-translate-y-60 md:scale-80 mix-blend-plus-darker z-[100]"
+                    src="/images/Ada-footer-2.png"
+                />
+
+                <img
+                    className="hidden md:block Ada absolute ml-85 scale-30 -translate-y-107 md:ml-282 md:-translate-y-60 md:scale-80 mix-blend-plus-darker"
+                    src="/images/Ada-footer-3.png"
+                />
                 {/* <video src="\videos\Walking_hand_3D.mp4"
                     autoPlay
                     playsInline
