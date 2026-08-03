@@ -36,19 +36,22 @@ app.use(express.json());
 
 // ==================== Routes for HTML ====================
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/register'));
+  res.sendFile(path.join(__dirname, '/register.html'));
 });
 
 app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, '/login'));
+  res.sendFile(path.join(__dirname, '/login.html'));
 });
 
 app.get('/register', (req, res) => {
-  res.sendFile(path.join(__dirname, '/register'));
+  res.sendFile(path.join(__dirname, '/register.html'));
 });
 
 app.get('/dashboard', (req, res) => {
-  res.sendFile(path.join(__dirname, '/dashboard'));
+  res.sendFile(path.join(__dirname, '/dashboard.html'));
+});
+app.get('/scan', (req, res) => {
+  res.sendFile(path.join(__dirname, '/index.html'));
 });
 
 // Serve static assets (CSS, JS, images)
