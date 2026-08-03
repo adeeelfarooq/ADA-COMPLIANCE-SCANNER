@@ -7,18 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Register | ADA Compliance Scanner</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-  
-  <!-- 2. CSS File Link karein -->
   <link rel="stylesheet" href="Modal.css">
-
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
-  <!-- GSAP CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
   <style>
@@ -107,33 +99,37 @@
         max-width: 420px;
         margin-top: 230px;
         opacity: 1;
-
-
         transform: scale(0.8);
+      }
 
+      .bg-div {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        z-index: -1 !important;
       }
 
       .registerimg {
-        
-      
-       width: 40dvw;
-      height: 70dvh;
-      object-fit: cover;
-      z-index: -1;
-      mix-blend-mode: screen;
-      margin-left: 150px;
-      margin-top: 40px;
-      
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        margin: 0;
+        transform: none;
+        mix-blend-mode: screen;
+        z-index: -1;
       }
     }
   </style>
-
 </head>
 
 <body>
 
-  <!-- Background Image Wrapper (Exactly as requested) -->
-  <div style="position: absolute; width:100dvw ; height:100dvh;">
+  <div class="bg-div" style="position: absolute; width:100dvw; height:100dvh;">
     <img class="registerimg" src="public/images/signup3.png" alt="signup">
   </div>
 
@@ -158,7 +154,7 @@
       </p>
     </form>
   </div>
-   
+
   <script>
     const btn = document.querySelector(".btn-orange");
     btn.addEventListener("mouseenter", () => {
@@ -170,44 +166,24 @@
 
     gsap.fromTo(
       "img[src*='signup3.png']",
-      {
-        opacity: 0,
-        scale: 1.5,
-        filter: "blur(10px)"
-      },
-      {
-        opacity: 1,
-        scale: 1.2,
-        filter: "blur(0px)",
-        duration: 1.8,
-        ease: "power4.out"
-      }
+      { opacity: 0, scale: 1.5, filter: "blur(10px)" },
+      { opacity: 1, scale: 1.2, filter: "blur(0px)", duration: 1.8, ease: "power4.out" }
     );
 
     if (window.innerWidth <= 767) {
       gsap.fromTo(
         "img[src*='signup3.png']",
-        {
-          opacity: 0,
-          scale:1.5,
-          filter: "blur(10px)"
-        },
-        {
-          opacity: 1,
-          scale: 1.6,
-          filter: "blur(0px)",
-          duration: 1.8,
-          ease: "power4.out"
-        }
+        { opacity: 0, scale: 1.5, filter: "blur(10px)" },
+        { opacity: 1, scale: 1.6, filter: "blur(0px)", duration: 1.8, ease: "power4.out" }
       );
     }
 
     gsap.to("img[src*='signup3.png']", {
-      y: "+=15",          // neeche jayegi
-      duration: 2,        // 2 sec me float hoga
-      yoyo: true,         // upar neeche repeat
-      repeat: -1,         // infinite
-      ease: "sine.inOut"  // smooth floating
+      y: "+=15",
+      duration: 2,
+      yoyo: true,
+      repeat: -1,
+      ease: "sine.inOut"
     });
 
     gsap.from(".register-box", {
@@ -218,13 +194,10 @@
     });
   </script>
 
-  <!-- Firebase SDKs as modules (v9) -->
   <script type="module">
-    // Import Firebase v9 modules
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 
-    // Your EXACT Firebase config untouched
     const firebaseConfig = {
       apiKey: "AIzaSyDHexMOAju6p5balzlQUzuYjzIjT2muirI",
       authDomain: "ada-scanner-db724.firebaseapp.com",
@@ -234,21 +207,18 @@
       appId: "1:459243186978:web:c1cf656d7377f80af9537b"
     };
 
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    // Register user on form submit
     document.getElementById('registerForm').addEventListener('submit', function (e) {
       e.preventDefault();
-
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
 
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           alert(" Registration successful!");
-          window.location.href = "/dashboard"; // Redirect after registration
+          window.location.href = "/dashboard";
         })
         .catch((error) => {
           alert(" Error: " + error.message);
